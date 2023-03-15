@@ -2,6 +2,7 @@ package com.boydgaming.paywithmybank;
 
 import android.content.Intent;
 
+import com.paywithmybank.android.sdk.interfaces.PayWithMyBankCallback;
 import com.paywithmybank.android.sdk.views.PayWithMyBankView;
 
 import org.apache.cordova.CordovaPlugin;
@@ -54,13 +55,12 @@ public class PayWithMyBank extends CordovaPlugin {
             logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
         }
 
-        this.cordova.getActivity().setContentView( R.layout.layout);
+        this.cordova.getActivity().setContentView( R.layout);
         PayWithMyBankView trustlyWidget = this.cordova.getActivity().findViewById( R.id.trustlyWidgetView);
-        trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback() {
+        trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
             @Override
-            public void handle(Object o, Object o2) {
+            public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
                 logger.info( "PWMB: onBankSelected callback()");
-                logger.info( "PWMB: o="+o.toString());
 
                 if( o2 instanceof HashMap) {
                     HashMap data = (HashMap)o2;
@@ -76,11 +76,5 @@ public class PayWithMyBank extends CordovaPlugin {
                 callInProgress.success( new JSONObject( establishData));
             }
         });
-
-//        if (message != null && message.length() > 0) {
-//            callbackContext.success(message);
-//        } else {
-//            callbackContext.error("Expected one non-empty string argument.");
-//        }
     }
 }
