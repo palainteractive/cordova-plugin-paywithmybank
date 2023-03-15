@@ -15,6 +15,8 @@
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
 		<source-file src="src/android/PayWithMyBank.java" target-dir="src/com/boydgaming/paywithmybank" />
 		<source-file src="src/android/LightboxActivity.java" target-dir="src/com/boydgaming/paywithmybank" />
+		<source-file src="res/layout/layout.xml" target-dir="res/layout" />
+		<source-file src="res/layout/activity_light_box.xml" target-dir="res/layout" />
 		<resource-file framework="true" src="res/android/paywithmybank-android-sdk-2.2.1.aar" target="../../libs/paywithmybank-android-sdk-2.2.1.aar" />
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 	</platform>
