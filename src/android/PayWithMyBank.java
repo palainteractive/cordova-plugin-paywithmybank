@@ -63,7 +63,7 @@ public class PayWithMyBank extends CordovaPlugin {
                 bridge.getActivity().startActivity(intent);
 
                 try {
-                    call.resolve( JSObject.fromJSONObject( new JSONObject( establishData)));
+                    call.success( new JSONObject( establishData));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
