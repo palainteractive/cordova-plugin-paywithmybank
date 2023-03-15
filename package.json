@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-paywithmybank",
+  "version": "0.0.1",
+  "description": "Trustly paywithmybank android sdk",
+  "cordova": {
+    "id": "cordova-plugin-paywithmybank",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d4nshields/cordova-plugin-paywithmybank.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova-android",
+      "version": ">=4.0.0"
+    }
+  ],
+  "author": "GeoTech-VN",
+  "license": "d4nshields",
+  "bugs": {
+    "url": "https://github.com/d4nshields/cordova-plugin-paywithmybank/issues"
+  },
+  "homepage": "https://github.com/d4nshields/cordova-plugin-paywithmybank#readme"
+}
