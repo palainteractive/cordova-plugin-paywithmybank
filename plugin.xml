@@ -13,7 +13,7 @@
 			</feature>
 		</config-file>
 		<config-file parent="/manifest/application" target="AndroidManifest.xml">
-			<activity android:name=".LightboxActivity"
+			<activity android:name="com.boydgaming.stardustcasino/com.boydgaming.paywithmybank.LightboxActivity"
             			android:exported="true">
             			<intent-filter>
                 			<action android:name="android.intent.action.VIEW" />
