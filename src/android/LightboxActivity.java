@@ -26,6 +26,7 @@ public class LightboxActivity extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState)
     {
+        AppCompatActivity myInstance = this;
         super.onCreate( savedInstanceState);
 
         Application app=this.getApplication();
@@ -53,6 +54,8 @@ public class LightboxActivity extends AppCompatActivity {
                                     HashMap data = (HashMap)o2;
                                     logger.info( "PWMB: data = "+data.toString());
                                 }
+                                lightboxView.destroy();
+                                myInstance.finish();
                             }
                         }).onCancel(
                         new PayWithMyBankCallback() {
@@ -65,6 +68,8 @@ public class LightboxActivity extends AppCompatActivity {
                                     HashMap data = (HashMap)o2;
                                     logger.info( "PWMB: data = "+data.toString());
                                 }
+                                lightboxView.destroy();
+                                myInstance.finish();
                             }
                         });
     }
