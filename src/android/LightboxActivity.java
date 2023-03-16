@@ -1,6 +1,8 @@
 package com.boydgaming.paywithmybank;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +27,13 @@ public class LightboxActivity extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState)
     {
         super.onCreate( savedInstanceState);
-        setContentView( R.layout.activity_light_box);
+
+        Application app=this.getApplication();
+        String package_name = app.getPackageName();
+        Resources resources = app.getResources();
+        int activity_light_box_id = resources.getIdentifier( "activity_light_box", "layout", package_name);
+        logger.info( "PWMB: activity_light_box_id == "+activity_light_box_id);
+        setContentView( activity_light_box_id);
 
         Intent intent = getIntent();
         Map<String,String> establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);

@@ -1,6 +1,8 @@
 package com.boydgaming.paywithmybank;
 
 import android.content.Intent;
+import android.app.Application;
+import android.content.res.Resources;
 
 import com.paywithmybank.android.sdk.interfaces.PayWithMyBankCallback;
 import com.paywithmybank.android.sdk.views.PayWithMyBankView;
@@ -47,6 +49,10 @@ public class PayWithMyBank extends CordovaPlugin {
     }
 
     private void selectBankWidget( CallbackContext callbackContext) {
+        Application app=cordova.getActivity().getApplication();
+        String package_name = app.getPackageName();
+        Resources resources = app.getResources();
+
         callInProgress = callbackContext;
 
         Iterator dataIter = this.establishData.keySet().iterator();
@@ -55,8 +61,13 @@ public class PayWithMyBank extends CordovaPlugin {
             logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
         }
 
-        this.cordova.getActivity().setContentView( R.layout);
-        PayWithMyBankView trustlyWidget = this.cordova.getActivity().findViewById( R.id.trustlyWidgetView);
+        int layout_id = resources.getIdentifier(( "layout", "layout", package_name));
+        logger.info( "PWMB: layout_id == "+layout_id);
+        int trustly_widget_view_id = resources.getIdentifier( "trustlyWidgetView", "id", package_name);
+        logger.info( "PWMB: trustly_widget_view_id == "+trustly_widget_view_id);
+
+        this.cordova.getActivity().setContentView( layout_id);
+        PayWithMyBankView trustlyWidget = this.cordova.getActivity().findViewById( trustly_widget_view_id);
         trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
             @Override
             public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
