@@ -35,6 +35,10 @@ public class PayWithMyBank extends CordovaPlugin {
     CallbackContext callInProgress;
     Logger logger = Logger.getLogger( "PayWithMyBank");
     ActivityResultLauncher<Intent> mStartForResult;
+    protected PayWithMyBankView trustlyWidget;
+    protected Resources resources;
+    protected Application app;
+    protected String package_name;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -43,6 +47,8 @@ public class PayWithMyBank extends CordovaPlugin {
             @Override
             public void onActivityResult( ActivityResult result) {
                 logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
+                trustlyWidget.removeAllViewsInLayout();
+                //trustlyWidget.destroy();
                 callInProgress.success( new JSONObject( establishData));
             }
         });
@@ -69,9 +75,9 @@ public class PayWithMyBank extends CordovaPlugin {
     }
 
     private void selectBankWidget( CallbackContext callbackContext) {
-        Application app=cordova.getActivity().getApplication();
-        String package_name = app.getPackageName();
-        Resources resources = app.getResources();
+        app=cordova.getActivity().getApplication();
+        package_name = app.getPackageName();
+        resources = app.getResources();
 
         callInProgress = callbackContext;
 
@@ -87,7 +93,7 @@ public class PayWithMyBank extends CordovaPlugin {
         logger.info( "PWMB: trustly_widget_view_id == "+trustly_widget_view_id);
 
         this.cordova.getActivity().setContentView( layout_id);
-        PayWithMyBankView trustlyWidget = this.cordova.getActivity().findViewById( trustly_widget_view_id);
+        trustlyWidget = this.cordova.getActivity().findViewById( trustly_widget_view_id);
         trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
             @Override
             public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
