@@ -33,12 +33,14 @@ public class LightboxActivity extends AppCompatActivity {
         Resources resources = app.getResources();
         int activity_light_box_id = resources.getIdentifier( "activity_light_box", "layout", package_name);
         logger.info( "PWMB: activity_light_box_id == "+activity_light_box_id);
+        int light_box_widget_id = resources.getIdentifier( "lightBoxWidget", "id", package_name);
+        logger.info( "PWMB: light_box_widget_id == "+light_box_widget_id);
         setContentView( activity_light_box_id);
 
         Intent intent = getIntent();
         Map<String,String> establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);
 
-        lightboxView = findViewById( R.id.lightBoxWidget);
+        lightboxView = findViewById( light_box_widget_id);
         lightboxView.establish( establishData)
                 .onReturn(
                         new PayWithMyBankCallback() {
