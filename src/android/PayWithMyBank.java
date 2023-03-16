@@ -12,9 +12,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import com.paywithmybank.android.sdk.interfaces.PayWithMyBankCallback;
 import com.paywithmybank.android.sdk.views.PayWithMyBankView;
 
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,19 @@ public class PayWithMyBank extends CordovaPlugin {
     Map<String,String> establishData = new HashMap();
     CallbackContext callInProgress;
     Logger logger = Logger.getLogger( "PayWithMyBank");
+    ActivityResultLauncher<Intent> mStartForResult;
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize( cordova, webView);
+        mStartForResult = cordova.getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult( ActivityResult result) {
+                logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
+                callInProgress.success( new JSONObject( establishData));
+            }
+        });
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -87,13 +102,6 @@ public class PayWithMyBank extends CordovaPlugin {
 
                 Intent intent = new Intent( cordova.getActivity(), LightboxActivity.class);
                 intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
-                ActivityResultLauncher<Intent> mStartForResult = cordova.getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult( ActivityResult result) {
-                        logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
-                        callInProgress.success( new JSONObject( establishData));
-                    }
-                });
                 mStartForResult.launch( intent);
             }
         });
