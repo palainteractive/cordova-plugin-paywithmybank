@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.app.Application;
 import android.content.res.Resources;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 import com.paywithmybank.android.sdk.interfaces.PayWithMyBankCallback;
 import com.paywithmybank.android.sdk.views.PayWithMyBankView;
 
@@ -82,9 +87,14 @@ public class PayWithMyBank extends CordovaPlugin {
 
                 Intent intent = new Intent( cordova.getActivity(), LightboxActivity.class);
                 intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
-                cordova.getActivity().startActivity(intent);
-
-                callInProgress.success( new JSONObject( establishData));
+                ActivityResultLauncher<Intent> mStartForResult = cordova.getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult( ActivityResult result) {
+                        logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
+                        callInProgress.success( new JSONObject( establishData));
+                    }
+                });
+                mStartForResult.launch( intent);
             }
         });
     }
