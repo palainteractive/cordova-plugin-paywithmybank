@@ -61,7 +61,7 @@ public class PayWithMyBank extends CordovaPlugin {
             logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
         }
 
-        int layout_id = resources.getIdentifier(( "layout", "layout", package_name));
+        int layout_id = resources.getIdentifier( "layout", "layout", package_name);
         logger.info( "PWMB: layout_id == "+layout_id);
         int trustly_widget_view_id = resources.getIdentifier( "trustlyWidgetView", "id", package_name);
         logger.info( "PWMB: trustly_widget_view_id == "+trustly_widget_view_id);
