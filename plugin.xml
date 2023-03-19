@@ -23,8 +23,13 @@
                 			<data android:scheme="com.boydgaming.stardustcasino.paywithmybank" />
             			</intent-filter>
         		</activity>
+			<activity android:name="com.boydgaming.paywithmybank.PayWithMyBankActivity"
+            			android:exported="true">
+        		</activity>
+		</config-file>
 		</config-file>
 		<source-file src="src/android/PayWithMyBank.java" target-dir="src/com/boydgaming/paywithmybank" />
+		<source-file src="src/android/PayWithMyBankActivity.java" target-dir="src/com/boydgaming/paywithmybank" />
 		<source-file src="src/android/LightboxActivity.java" target-dir="src/com/boydgaming/paywithmybank" />
 		<source-file src="res/layout/layout.xml" target-dir="res/layout" />
 		<source-file src="res/layout/activity_light_box.xml" target-dir="res/layout" />
