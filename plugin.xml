@@ -27,7 +27,6 @@
             			android:exported="true">
         		</activity>
 		</config-file>
-		</config-file>
 		<source-file src="src/android/PayWithMyBank.java" target-dir="src/com/boydgaming/paywithmybank" />
 		<source-file src="src/android/PayWithMyBankActivity.java" target-dir="src/com/boydgaming/paywithmybank" />
 		<source-file src="src/android/LightboxActivity.java" target-dir="src/com/boydgaming/paywithmybank" />
