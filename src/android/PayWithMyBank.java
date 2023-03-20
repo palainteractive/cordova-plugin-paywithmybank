@@ -86,7 +86,7 @@ public class PayWithMyBank extends CordovaPlugin {
             logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
         }
 
-        Intent intent = new Intent( this, LightboxActivity.class);
+        Intent intent = new Intent( cordova.getActivity().getApplicationContext(), PayWithMyBankActivity.class);
         intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
         mStartSelectBankForResult.launch( intent);
 

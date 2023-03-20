@@ -3,11 +3,13 @@ package com.boydgaming.paywithmybank;
 import android.content.Intent;
 import android.app.Application;
 import android.content.res.Resources;
+import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.paywithmybank.android.sdk.interfaces.PayWithMyBankCallback;
 import com.paywithmybank.android.sdk.views.PayWithMyBankView;
@@ -30,7 +32,8 @@ import java.util.logging.Logger;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class PayWithMyBank extends AppCompatActivity {
+public class PayWithMyBankActivity extends AppCompatActivity {
+    public static String ESTABLISH_DATA = "establishData";
     Map<String,String> establishData = new HashMap();
     Logger logger = Logger.getLogger( "PayWithMyBankActivity");
     ActivityResultLauncher<Intent> mStartLightboxForResult;
@@ -51,7 +54,7 @@ public class PayWithMyBank extends AppCompatActivity {
                 logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
                 trustlyWidget.removeAllViewsInLayout();
                 //trustlyWidget.destroy();
-                this.finish();
+                finish();
             }
         });
 
@@ -59,7 +62,6 @@ public class PayWithMyBank extends AppCompatActivity {
         this.establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);
 
         this.selectBankWidget();
-        return true;
     }
 
     private void selectBankWidget() {
@@ -92,7 +94,7 @@ public class PayWithMyBank extends AppCompatActivity {
                     establishData.put( "paymentProviderId", paymentProviderId);
                 }
 
-                Intent intent = new Intent( this, LightboxActivity.class);
+                Intent intent = new Intent( getApplicationContext(), LightboxActivity.class);
                 intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
                 mStartLightboxForResult.launch( intent);
             }
