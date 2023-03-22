@@ -4,7 +4,7 @@ import PayWithMyBank
 
 /**
  * #### Pala Interactive - Internal documentation
- * #### Cordova Plugin - Trustly PayWithMyBank version 2.3.0
+ * #### Cordova Plugin - Trustly PayWithMyBank v2.3.0
  * #### author: Dan Shields
   * #### created: 2023-02-17
  */
