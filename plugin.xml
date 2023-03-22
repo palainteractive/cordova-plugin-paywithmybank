@@ -41,7 +41,7 @@
 				<param name="ios-package" value="PayWithMyBank" />
 			</feature>
 		</config-file>
-		<source-file src="src/ios/PayWithMyBank.swift" />
+		<source-file src="src/ios/PWMBCordovaPlugin.swift" />
 		<source-file src="src/ios/MerchantViewController.swift" />
 		<source-file src="src/ios/TrustlyLightboxViewController.swift" />
 	</platform>
