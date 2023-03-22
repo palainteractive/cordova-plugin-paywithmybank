@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.boydgaming.paywithmybank" version="0.1"
+<plugin id="cordova-plugin-paywithmybank" version="0.0.1"
 	xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<name>PayWithMyBank</name>
@@ -44,6 +44,7 @@
 		<source-file src="src/ios/PWMBCordovaPlugin.swift" />
 		<source-file src="src/ios/MerchantViewController.swift" />
 		<source-file src="src/ios/TrustlyLightboxViewController.swift" />
+		<framework src="res/ios/PayWithMyBank.xcframework" embed="true" custom="true" />
 	</platform>
 </plugin>
 
