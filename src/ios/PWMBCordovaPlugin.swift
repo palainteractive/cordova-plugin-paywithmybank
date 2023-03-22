@@ -1,5 +1,4 @@
 import Foundation
-import Capacitor
 import PayWithMyBank
 
 
@@ -34,13 +33,13 @@ class PayWithMyBankViewController: UIViewController {
     }
 }
 
-@objc(PWMBCapacitorPlugin)
-public class PWMBCapacitorPlugin: CAPPlugin,PayWithMyBankViewProtocol {
+@objc(PWMBCordovaPlugin)
+public class PWMBCordovaPlugin: CDVPlugin,PayWithMyBankViewProtocol {
     private var establishData:Dictionary<AnyHashable,Any>?
     var trustly: PayWithMyBankView!
-    private var callInProgress: CAPPluginCall? = nil
+    private var callInProgress: CDVInvokedUrlCommand? = nil
 
-    @objc func selectBankWidget(_ call: CAPPluginCall) {
+    @objc func selectBankWidget(_ call: CDVInvokedUrlCommand) {
         self.callInProgress = call
         self.establishData = [:]
         let keys = call.options.keys
