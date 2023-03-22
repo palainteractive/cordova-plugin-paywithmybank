@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/d4nshields/cordova-plugin-paywithmybank.git"
+    "url": "git+https://github.com/palainteractive/cordova-plugin-paywithmybank.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -25,9 +25,9 @@
     }
   ],
   "author": "GeoTech-VN",
-  "license": "d4nshields",
+  "license": "palainteractive",
   "bugs": {
-    "url": "https://github.com/d4nshields/cordova-plugin-paywithmybank/issues"
+    "url": "https://github.com/palainteractive/cordova-plugin-paywithmybank/issues"
   },
-  "homepage": "https://github.com/d4nshields/cordova-plugin-paywithmybank#readme"
+  "homepage": "https://github.com/palainteractive/cordova-plugin-paywithmybank#readme"
 }
