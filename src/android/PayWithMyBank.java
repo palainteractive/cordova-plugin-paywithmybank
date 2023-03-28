@@ -56,16 +56,33 @@ public class PayWithMyBank extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("selectBankWidget")) {
-            JSONObject jobj = args.getJSONObject(0);
-            Iterator keysIter= jobj.keys();
-            while( keysIter.hasNext()) {
-                String key = (String)keysIter.next();
-                if( null != jobj.getString( key)) {
-                    this.establishData.put(key, (String)jobj.getString(key));
+            this.establishData.put( "metadata.urlScheme", "com.boydgaming.stardustcasino://");
+
+            JSONObject establishDict = args.getJSONObject(0);
+            Iterator establishIter = establishDict.keys();
+            while( establishIter.hasNext()) {
+                String key = (String)establishIter.next();
+                if( key.equals( "customer")) {
+                    JSONObject customerDict = establishDict.getJSONObject("customer");
+                    Iterator customerIter = customerDict.keys();
+                    while (customerIter.hasNext()) {
+                        String customerKey = (String) customerIter.next();
+                        if (customerKey.equals("address")) {
+                            JSONObject addressDict = customerDict.getJSONObject("address");
+                            Iterator addressIter = addressDict.keys();
+                            while (addressIter.hasNext()) {
+                                String addressKey = (String) addressIter.next();
+                                this.establishData.put(key + "." + customerKey + "." + addressKey, addressDict.getString(addressKey));
+                            }
+                        } else {
+                            this.establishData.put(key + "." + customerKey, customerDict.getString(customerKey));
+                        }
+                    }
                 } else {
-                    this.establishData.put(key, "");
+                    this.establishData.put( key, establishDict.getString( key));
                 }
             }
+            logger.info( "PWMB: establishData: "+this.establishData.toString());
 
             this.selectBankWidget( callbackContext);
             return true;
