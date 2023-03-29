@@ -22,7 +22,7 @@
                 			<action android:name="android.intent.action.VIEW" />
                 			<category android:name="android.intent.category.DEFAULT" />
                 			<category android:name="android.intent.category.BROWSABLE" />
-                			<data android:scheme="com.boydgaming.stardustcasino" />
+                			<data android:scheme="com.boydgaming.paywithmybank" />
             			</intent-filter>
         		</activity>
 			<activity android:name="com.boydgaming.paywithmybank.PayWithMyBankActivity"

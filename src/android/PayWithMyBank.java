@@ -56,7 +56,7 @@ public class PayWithMyBank extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("selectBankWidget")) {
-            this.establishData.put( "metadata.urlScheme", "com.boydgaming.stardustcasino://");
+            this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
 
             JSONObject establishDict = args.getJSONObject(0);
             Iterator establishIter = establishDict.keys();
