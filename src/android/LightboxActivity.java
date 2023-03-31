@@ -20,14 +20,27 @@ import java.util.logging.Logger;
 
 public class LightboxActivity extends AppCompatActivity {
     public static String ESTABLISH_DATA = "establishData";
-    private PayWithMyBankView lightboxView;
+    public static AppCompatActivity myInstance = null;
+    private static PayWithMyBankView lightboxView = null;
     Logger logger = Logger.getLogger( "LightboxActivity");
 
     @Override
     protected void onCreate( Bundle savedInstanceState)
     {
-        AppCompatActivity myInstance = this;
+        logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onCreate()");
         super.onCreate( savedInstanceState);
+        Intent intent = getIntent();
+        Map<String,String> establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);
+
+        if( null == establishData) {
+            return;
+        }
+//        if( null != myInstance && null != intent && Intent.ACTION_VIEW.equals( intent.getAction())) {
+//            return;
+//        } else {
+//            myInstance = this;
+//        }
+        myInstance = this;
 
         Application app=this.getApplication();
         String package_name = app.getPackageName();
@@ -38,23 +51,20 @@ public class LightboxActivity extends AppCompatActivity {
         logger.info( "PWMB: light_box_widget_id == "+light_box_widget_id);
         setContentView( activity_light_box_id);
 
-        Intent intent = getIntent();
-        Map<String,String> establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);
-
-        lightboxView = findViewById( light_box_widget_id);
+        lightboxView = findViewById(light_box_widget_id);
         lightboxView.establish( establishData)
                 .onReturn(
                         new PayWithMyBankCallback() {
                             @Override
                             public void handle(Object o, Object o2) {
-                                logger.info( "PWMB: LightboxView extablish onRetrun callback()");
+                                logger.info( "PWMB: LightboxView establish onReturn callback()");
                                 logger.info( "PWMB: o="+o.toString());
 
                                 if( o2 instanceof HashMap) {
                                     HashMap data = (HashMap)o2;
                                     logger.info( "PWMB: data = "+data.toString());
                                 }
-                                lightboxView.destroy();
+                                //lightboxView.destroy();
                                 myInstance.finish();
                             }
                         }).onCancel(
@@ -68,7 +78,7 @@ public class LightboxActivity extends AppCompatActivity {
                                     HashMap data = (HashMap)o2;
                                     logger.info( "PWMB: data = "+data.toString());
                                 }
-                                lightboxView.destroy();
+                                //lightboxView.destroy();
                                 myInstance.finish();
                             }
                         });
@@ -77,7 +87,20 @@ public class LightboxActivity extends AppCompatActivity {
     @Override
     public void onRestart()
     {
+        logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
         super.onRestart();
         lightboxView.proceedToChooseAccount();
+    }
+    @Override
+    public void onResume()
+    {
+        logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
+        super.onResume();
+        if( lightboxView.getChildCount() < 2) {
+            return;
+        } else {
+            logger.info("PWMB: lightboxView: " + lightboxView.toString());
+            lightboxView.proceedToChooseAccount();
+        }
     }
 }
