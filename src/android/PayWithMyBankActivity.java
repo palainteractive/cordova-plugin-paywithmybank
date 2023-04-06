@@ -14,15 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.paywithmybank.android.sdk.interfaces.PayWithMyBankCallback;
 import com.paywithmybank.android.sdk.views.PayWithMyBankView;
 
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
-
-import org.apache.cordova.CordovaWebView;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;

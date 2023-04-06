@@ -16,18 +16,17 @@
 			</feature>
 		</config-file>
 		<config-file parent="/manifest/application" target="AndroidManifest.xml">
-			<activity android:name="com.boydgaming.paywithmybank.LightboxActivity"
-            			android:exported="true">
-            			<intent-filter>
-                			<action android:name="android.intent.action.VIEW" />
-                			<category android:name="android.intent.category.DEFAULT" />
-                			<category android:name="android.intent.category.BROWSABLE" />
-                			<data android:scheme="com.boydgaming.paywithmybank" />
-            			</intent-filter>
-        		</activity>
-			<activity android:name="com.boydgaming.paywithmybank.PayWithMyBankActivity"
-            			android:exported="true">
-        		</activity>
+			<activity android:name="com.boydgaming.paywithmybank.LightboxActivity" android:exported="true">
+			</activity>
+			<activity android:name="com.boydgaming.paywithmybank.RedirectActivity" android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:scheme="com.boydgaming.paywithmybank"/>
+			</intent-filter>
+			</activity>
+			<activity android:name="com.boydgaming.paywithmybank.PayWithMyBankActivity" android:exported="true"/>
 		</config-file>
 		<source-file src="src/android/PayWithMyBank.java" target-dir="src/com/boydgaming/paywithmybank" />
 		<source-file src="src/android/PayWithMyBankActivity.java" target-dir="src/com/boydgaming/paywithmybank" />

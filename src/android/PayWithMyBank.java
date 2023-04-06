@@ -56,7 +56,6 @@ public class PayWithMyBank extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("selectBankWidget")) {
-            this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
 
             JSONObject establishDict = args.getJSONObject(0);
             Iterator establishIter = establishDict.keys();
@@ -82,6 +81,7 @@ public class PayWithMyBank extends CordovaPlugin {
                     this.establishData.put( key, establishDict.getString( key));
                 }
             }
+            this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
             logger.info( "PWMB: establishData: "+this.establishData.toString());
 
             this.selectBankWidget( callbackContext);
@@ -106,6 +106,16 @@ public class PayWithMyBank extends CordovaPlugin {
         Intent intent = new Intent( cordova.getActivity().getApplicationContext(), PayWithMyBankActivity.class);
         intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
         mStartSelectBankForResult.launch( intent);
+
+    }
+
+    @Override
+    public void onNewIntent( Intent intent) {
+        if( intent == null || !intent.getAction().equals( Intent.ACTION_VIEW)) {
+            return;
+        }
+        logger.info( "PWMB: PayWithMyBank CordovaPlugin: onNewIntent()");
+        this.webView.sendJavascript("window.PayWithMyBank.proceedToChooseAccount();");
 
     }
 }
