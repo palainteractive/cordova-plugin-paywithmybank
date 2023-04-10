@@ -90,7 +90,7 @@ public class LightboxActivity extends AppCompatActivity {
     {
         logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
         super.onRestart();
-        lightboxView.proceedToChooseAccount();
+        lightboxView.hybrid("javascript:PayWithMyBank.proceedToChooseAccount();", "#return", "cancel");
     }
 //    @Override
 //    public void onResume()
