@@ -85,9 +85,10 @@ public class PayWithMyBankActivity extends AppCompatActivity {
                     establishData.put( "paymentProviderId", paymentProviderId);
                 }
 
-                Intent intent = new Intent( getApplicationContext(), LightboxActivity.class);
+                Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
                 intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
                 mStartLightboxForResult.launch( intent);
+//                startActivity( intent);
             }
         });
     }

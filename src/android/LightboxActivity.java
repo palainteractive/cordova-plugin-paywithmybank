@@ -32,14 +32,9 @@ public class LightboxActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Map<String,String> establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);
 
-        if( null == establishData) {
-            this.finish();
-            return;
-        }
-//        if( null != myInstance && null != intent && Intent.ACTION_VIEW.equals( intent.getAction())) {
+//        if( null == establishData) {
+//            this.finish();
 //            return;
-//        } else {
-//            myInstance = this;
 //        }
         myInstance = this;
 
@@ -90,18 +85,7 @@ public class LightboxActivity extends AppCompatActivity {
     {
         logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
         super.onRestart();
-        lightboxView.hybrid("javascript:PayWithMyBank.proceedToChooseAccount();", "#return", "cancel");
+        //lightboxView.hybrid("javascript:PayWithMyBank.proceedToChooseAccount();", "#return", "cancel");
+        lightboxView.proceedToChooseAccount();
     }
-//    @Override
-//    public void onResume()
-//    {
-//        logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
-//        super.onResume();
-//        if( lightboxView.getChildCount() < 2) {
-//            return;
-//        } else {
-//            logger.info("PWMB: lightboxView: " + lightboxView.toString());
-//            lightboxView.proceedToChooseAccount();
-//        }
-//    }
 }

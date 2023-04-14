@@ -15,6 +15,7 @@ public class RedirectActivity extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState)
     {
         super.onCreate( savedInstanceState);
+        logger.info( "PWMB: RedirectActivity: onCreate");
         Intent intent = new Intent( this, LightboxActivity.class);
         intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity( intent);
