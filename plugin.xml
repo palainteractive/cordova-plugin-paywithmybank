@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-paywithmybank" version="0.0.1"
+<plugin id="cordova-plugin-paywithmybank" version="0.2.0"
 	xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<name>PayWithMyBank</name>
@@ -37,7 +37,7 @@
 		<resource-file framework="true" src="res/android/paywithmybank-android-sdk-2.2.1.aar" target="../../libs/paywithmybank-android-sdk-2.2.1.aar" />
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 	</platform>
-	<platform name="iOS">
+	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
 			<feature name="PayWithMyBank">
 				<param name="ios-package" value="PayWithMyBank" />
