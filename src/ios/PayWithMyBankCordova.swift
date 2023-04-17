@@ -1,3 +1,4 @@
+import Cordova
 import Foundation
 import PayWithMyBank
 
@@ -33,21 +34,25 @@ class PayWithMyBankViewController: UIViewController {
     }
 }
 
-@objc(PWMBCordovaPlugin)
-public class PWMBCordovaPlugin: CDVPlugin,PayWithMyBankViewProtocol {
+@objc(PayWithMyBankCordova)
+public class PayWithMyBankCordova: CDVPlugin,PayWithMyBankViewProtocol {
     private var establishData:Dictionary<AnyHashable,Any>?
     var trustly: PayWithMyBankView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
 
-    @objc func selectBankWidget(_ call: CDVInvokedUrlCommand) {
-        self.callInProgress = call
+    @objc(selectBankWidget:)
+    func selectBankWidget( command: CDVInvokedUrlCommand) {
+        self.callInProgress = command
         self.establishData = [:]
-        let keys = call.options.keys
-        for key in keys {
-            let val = call.getString( key as! String)
+        
+        let params:AnyObject = command.arguments[0] as AnyObject;
+        
+        let keys = params.allKeys
+        for key in keys! {
+            let val = command.value( forKey: key as! String) as? String
             if( nil != val) {
-                self.establishData![key] = val
-//                print( "PWMB: selectBankWidget: \(key) == \(String(describing: val))")
+                self.establishData![key as? String] = val!
+                print( "PWMB: selectBankWidget: \(key) == \(String(describing: val))")
             }
         }
                 
@@ -55,20 +60,25 @@ public class PWMBCordovaPlugin: CDVPlugin,PayWithMyBankViewProtocol {
             let merchantViewController = MerchantViewController();
             merchantViewController.delegate = self
             merchantViewController.establishData = self.establishData!;
-            guard let bridge = self.bridge else {return}
-            bridge.viewController!.present( merchantViewController, animated: true, completion: nil)
+            self.viewController!.present( merchantViewController, animated: true, completion: nil)
         }
     }
     func onReturnWithTransactionId(transactionId: Any) {
-        guard let bridge = self.bridge else {return}
-        bridge.viewController?.dismiss( animated: true)
-        self.callInProgress?.resolve( ["transactionId": transactionId])
+        self.viewController?.dismiss( animated: true)
+        self.commandDelegate!.send( CDVPluginResult(
+            status: CDVCommandStatus_OK,
+            messageAs: "{\"transactionId\": \(transactionId)}"
+        ), callbackId: callInProgress?.callbackId);
     }
     
     func onCancelWithTransactionId(transactionId: Any?) {
-        guard let bridge = self.bridge else {return}
-        bridge.viewController?.dismiss( animated: true)
-        self.callInProgress?.resolve( ["error": "cancelled"])
+        self.viewController?.dismiss( animated: true)
+        self.commandDelegate!.send( CDVPluginResult(
+            status: CDVCommandStatus_ERROR,
+            messageAs: "{\"error\": \"cancelled\"}"
+        ), callbackId:callInProgress?.callbackId);
     }
     
 }
+
+
