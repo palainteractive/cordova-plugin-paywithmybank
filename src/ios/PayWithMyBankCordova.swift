@@ -34,8 +34,8 @@ class PayWithMyBankViewController: UIViewController {
     }
 }
 
-@objc(PayWithMyBank)
-public class PayWithMyBank: CDVPlugin,PayWithMyBankViewProtocol {
+@objc(PayWithMyBankCordova)
+public class PayWithMyBankCordova: CDVPlugin,PayWithMyBankViewProtocol {
     private var establishData:Dictionary<AnyHashable,Any>?
     var trustly: PayWithMyBankView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
