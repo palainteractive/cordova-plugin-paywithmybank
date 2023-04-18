@@ -1,4 +1,5 @@
 import Cordova
+import Cordova
 import Foundation
 import PayWithMyBank
 
@@ -39,12 +40,15 @@ public class PayWithMyBankCordova: CDVPlugin {
     private var establishData:Dictionary<AnyHashable,Any>?
     var trustly: PayWithMyBankView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
+    var APP_DEEP_LINK = "com.palainteractive.stardustcasino.paywithmybank://"
 
     @objc(selectBankWidget:)
     func selectBankWidget( command: CDVInvokedUrlCommand) {
         self.callInProgress = command
         self.establishData = [:]
         
+        self.establishData!["metadata.urlScheme"]=APP_DEEP_LINK;
+        self.establishData!["metadata.integrationContext"]="InAppBrowser";
         let params:AnyObject = command.arguments[0] as AnyObject;
         
         let keys = params.allKeys
