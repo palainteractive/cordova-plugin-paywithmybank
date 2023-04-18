@@ -1,5 +1,4 @@
 import Cordova
-import Cordova
 import Foundation
 import PayWithMyBank
 
@@ -50,8 +49,6 @@ public class PayWithMyBankCordova: CDVPlugin {
         //        
         self.establishData!["metadata.urlScheme"]=APP_DEEP_LINK;
         self.establishData!["metadata.integrationContext"]="InAppBrowser";
-        self.establishData!["cancelUrl"] = nil
-        self.establishData!["returnUrl"] = nil
         //
         let params:AnyObject = command.arguments[0] as AnyObject;
         
@@ -84,6 +81,8 @@ public class PayWithMyBankCordova: CDVPlugin {
                 print( "PWMB: selectBankWidget: \(key) == \(String(describing: val!))")
             }
         }
+        self.establishData!["cancelUrl"] = nil
+        self.establishData!["returnUrl"] = nil
                 
         DispatchQueue.main.async {
             let merchantViewController = MerchantViewController();
