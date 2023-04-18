@@ -1,4 +1,5 @@
 import Cordova
+import Cordova
 import Foundation
 import PayWithMyBank
 
@@ -35,7 +36,7 @@ class PayWithMyBankViewController: UIViewController {
 }
 
 @objc(PayWithMyBankCordova)
-public class PayWithMyBankCordova: CDVPlugin,PayWithMyBankViewProtocol {
+public class PayWithMyBankCordova: CDVPlugin {
     private var establishData:Dictionary<AnyHashable,Any>?
     var trustly: PayWithMyBankView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
@@ -58,25 +59,38 @@ public class PayWithMyBankCordova: CDVPlugin,PayWithMyBankViewProtocol {
                 
         DispatchQueue.main.async {
             let merchantViewController = MerchantViewController();
-            merchantViewController.delegate = self
+            merchantViewController.delegate = PayWithMyBankDelegate(
+                viewController: self.viewController!,
+                commandDelegate: self.commandDelegate!,
+                callInProgress: self.callInProgress!)
             merchantViewController.establishData = self.establishData!;
             self.viewController!.present( merchantViewController, animated: true, completion: nil)
         }
     }
-    func onReturnWithTransactionId(transactionId: Any) {
-        self.viewController?.dismiss( animated: true)
-        self.commandDelegate!.send( CDVPluginResult(
-            status: CDVCommandStatus_OK,
-            messageAs: "{\"transactionId\": \(transactionId)}"
-        ), callbackId: callInProgress?.callbackId);
-    }
-    
-    func onCancelWithTransactionId(transactionId: Any?) {
-        self.viewController?.dismiss( animated: true)
-        self.commandDelegate!.send( CDVPluginResult(
-            status: CDVCommandStatus_ERROR,
-            messageAs: "{\"error\": \"cancelled\"}"
-        ), callbackId:callInProgress?.callbackId);
+    public class PayWithMyBankDelegate: PayWithMyBankViewProtocol {
+        var viewController: UIViewController
+        var commandDelegate:CDVCommandDelegate
+        var callInProgress:CDVInvokedUrlCommand
+        init( viewController: UIViewController, commandDelegate:CDVCommandDelegate, callInProgress:CDVInvokedUrlCommand) {
+            self.viewController = viewController
+            self.commandDelegate = commandDelegate
+            self.callInProgress = callInProgress
+        }
+        func onReturnWithTransactionId(transactionId: Any) {
+            self.viewController.dismiss( animated: true)
+            self.commandDelegate.send( CDVPluginResult(
+                status: CDVCommandStatus_OK,
+                messageAs: "{\"transactionId\": \(transactionId)}"
+            ), callbackId: self.callInProgress.callbackId);
+        }
+        
+        func onCancelWithTransactionId(transactionId: Any?) {
+            self.viewController.dismiss( animated: true)
+            self.commandDelegate.send( CDVPluginResult(
+                status: CDVCommandStatus_ERROR,
+                messageAs: "{\"error\": \"cancelled\"}"
+            ), callbackId:self.callInProgress.callbackId);
+        }
     }
     
 }
