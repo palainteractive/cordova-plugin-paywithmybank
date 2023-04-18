@@ -49,7 +49,7 @@ public class PayWithMyBankCordova: CDVPlugin {
         
         let keys = params.allKeys
         for key in keys! {
-            let val = command.value( forKey: key as! String) as? String
+            let val = params.value( forKey: key as! String) as? String
             if( nil != val) {
                 self.establishData![key as? String] = val!
                 print( "PWMB: selectBankWidget: \(key) == \(String(describing: val))")
