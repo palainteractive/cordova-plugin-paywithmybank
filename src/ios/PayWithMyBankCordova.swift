@@ -46,9 +46,13 @@ public class PayWithMyBankCordova: CDVPlugin {
     func selectBankWidget( command: CDVInvokedUrlCommand) {
         self.callInProgress = command
         self.establishData = [:]
-        
+
+        //        
         self.establishData!["metadata.urlScheme"]=APP_DEEP_LINK;
         self.establishData!["metadata.integrationContext"]="InAppBrowser";
+        self.establishData!["cancelUrl"] = nil
+        self.establishData!["returnUrl"] = nil
+        //
         let params:AnyObject = command.arguments[0] as AnyObject;
         
         let keys = params.allKeys
