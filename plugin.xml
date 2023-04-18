@@ -39,8 +39,8 @@
 	</platform>
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
-			<feature name="PayWithMyBank">
-				<param name="ios-package" value="PayWithMyBank" />
+			<feature name="PayWithMyBankCordova">
+				<param name="ios-package" value="PayWithMyBankCordova" />
 			</feature>
 		</config-file>
 		<source-file src="src/ios/PayWithMyBankCordova.swift" />

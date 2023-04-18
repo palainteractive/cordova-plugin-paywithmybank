@@ -1,5 +1,4 @@
 import Cordova
-import Cordova
 import Foundation
 import PayWithMyBank
 
@@ -38,7 +37,7 @@ class PayWithMyBankViewController: UIViewController {
 @objc(PayWithMyBankCordova)
 public class PayWithMyBankCordova: CDVPlugin {
     private var establishData:Dictionary<AnyHashable,Any>?
-    //var trustly: PayWithMyBankView!
+    var trustly: PayWithMyBankView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
 
     @objc(selectBankWidget:)
