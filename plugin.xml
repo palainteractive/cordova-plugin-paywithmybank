@@ -39,7 +39,7 @@
 	</platform>
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
-			<feature name="PayWithMyBank">
+			<feature name="PayWithMyBankCordovaCordova">
 				<param name="ios-package" value="PayWithMyBankCordova" />
 			</feature>
 		</config-file>
