@@ -1,3 +1,4 @@
+import Cordova
 
 import UIKit
 import PayWithMyBank

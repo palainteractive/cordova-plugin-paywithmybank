@@ -38,7 +38,7 @@ class PayWithMyBankViewController: UIViewController {
 @objc(PayWithMyBankCordova)
 public class PayWithMyBankCordova: CDVPlugin {
     private var establishData:Dictionary<AnyHashable,Any>?
-    var trustly: PayWithMyBankView!
+    //var trustly: PayWithMyBankView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
 
     @objc(selectBankWidget:)
@@ -50,10 +50,31 @@ public class PayWithMyBankCordova: CDVPlugin {
         
         let keys = params.allKeys
         for key in keys! {
-            let val = command.value( forKey: key as! String) as? String
-            if( nil != val) {
+            if key as! String == "customer" {
+                let customerDict = params.value( forKey: key as! String) as! Dictionary<String,Any>
+                let customerKeys = customerDict.keys
+                for customerKey in customerKeys {
+                    if customerKey == "address" {
+                        let addressDict = customerDict["address"] as! Dictionary<String,Any>
+                        let addressKeys = addressDict.keys
+                        for addressKey in addressKeys {
+                            let val = addressDict[addressKey]
+                            let k = "\(key).\(customerKey).\(addressKey)"
+                            self.establishData![ k] = String(describing: val!)
+                            print( "PWMB: selectBankWidget: \(k) == \(String(describing: val!))")
+                        }
+                    } else {
+                        let val = customerDict[customerKey]
+                        let k = "\(key).\(customerKey)"
+                        self.establishData![ k] = String(describing: val!)
+                        print( "PWMB: selectBankWidget: \(k) == \(String(describing: val!))")
+                    }
+                }
+            }
+            let val = params.value( forKey: key as! String)
+            if val is String {
                 self.establishData![key as? String] = val!
-                print( "PWMB: selectBankWidget: \(key) == \(String(describing: val))")
+                print( "PWMB: selectBankWidget: \(key) == \(String(describing: val!))")
             }
         }
                 
