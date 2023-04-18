@@ -1,5 +1,4 @@
 import Cordova
-import Cordova
 import Foundation
 import PayWithMyBank
 
