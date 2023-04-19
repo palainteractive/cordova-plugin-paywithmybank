@@ -39,11 +39,11 @@
 	</platform>
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
-			<feature name="PayWithMyBank">
-				<param name="ios-package" value="PayWithMyBank" />
+			<feature name="PayWithMyBankCordova">
+				<param name="ios-package" value="PayWithMyBankCordova" />
 			</feature>
 		</config-file>
-		<source-file src="src/ios/PWMBCordovaPlugin.swift" />
+		<source-file src="src/ios/PayWithMyBankCordova.swift" />
 		<source-file src="src/ios/MerchantViewController.swift" />
 		<source-file src="src/ios/TrustlyLightboxViewController.swift" />
 		<framework src="res/ios/PayWithMyBank.xcframework" embed="true" custom="true" />
