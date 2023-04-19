@@ -46,7 +46,7 @@ public class PayWithMyBankCordova: CDVPlugin {
         self.callInProgress = command
         self.establishData = [:]
 
-        //        
+        //
         self.establishData!["metadata.urlScheme"]=APP_DEEP_LINK;
         self.establishData!["metadata.integrationContext"]="InAppBrowser";
         //
@@ -54,6 +54,9 @@ public class PayWithMyBankCordova: CDVPlugin {
         
         let keys = params.allKeys
         for key in keys! {
+            if key as! String == "cancelUrl" || key as! String == "returnUrl" {
+                continue
+            }
             if key as! String == "customer" {
                 let customerDict = params.value( forKey: key as! String) as! Dictionary<String,Any>
                 let customerKeys = customerDict.keys
@@ -77,13 +80,11 @@ public class PayWithMyBankCordova: CDVPlugin {
             }
             let val = params.value( forKey: key as! String)
             if val is String {
-                self.establishData![key as? String] = val!
+                self.establishData![key as! String] = val!
                 print( "PWMB: selectBankWidget: \(key) == \(String(describing: val!))")
             }
         }
-        self.establishData!["cancelUrl"] = nil
-        self.establishData!["returnUrl"] = nil
-                
+
         DispatchQueue.main.async {
             let merchantViewController = MerchantViewController();
             merchantViewController.delegate = PayWithMyBankDelegate(
