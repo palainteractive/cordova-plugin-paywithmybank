@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class LightboxActivity extends AppCompatActivity {
     public static String ESTABLISH_DATA = "establishData";
     public static AppCompatActivity myInstance = null;
-    private static PayWithMyBankView lightboxView = null;
+    private PayWithMyBankView lightboxView = null;
     Logger logger = Logger.getLogger( "LightboxActivity");
 
     @Override
@@ -70,10 +70,10 @@ public class LightboxActivity extends AppCompatActivity {
                                 // logger.info( "PWMB: LightboxView establish onCancel callback()");
                                 // logger.info( "PWMB: o="+o.toString());
 
-                                if( o2 instanceof HashMap) {
-                                    HashMap data = (HashMap)o2;
-                                    // logger.info( "PWMB: data = "+data.toString());
-                                }
+                                // if( o2 instanceof HashMap) {
+                                //     HashMap data = (HashMap)o2;
+                                //     // logger.info( "PWMB: data = "+data.toString());
+                                // }
                                 //lightboxView.destroy();
                                 myInstance.finish();
                             }
