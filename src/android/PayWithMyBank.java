@@ -46,7 +46,7 @@ public class PayWithMyBank extends CordovaPlugin {
         mStartSelectBankForResult = cordova.getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult( ActivityResult result) {
-                logger.info( "PWMB: PayWithMyBank...SelectBank...onActivityResult(): ");
+                // logger.info( "PWMB: PayWithMyBank...SelectBank...onActivityResult(): ");
 
                 callInProgress.success( new JSONObject( establishData));
             }
@@ -82,7 +82,7 @@ public class PayWithMyBank extends CordovaPlugin {
                 }
             }
             this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
-            logger.info( "PWMB: establishData: "+this.establishData.toString());
+            // logger.info( "PWMB: establishData: "+this.establishData.toString());
 
             this.selectBankWidget( callbackContext);
             return true;
@@ -100,7 +100,7 @@ public class PayWithMyBank extends CordovaPlugin {
         Iterator dataIter = this.establishData.keySet().iterator();
         while( dataIter.hasNext()) {
             String key = (String)dataIter.next();
-            logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
+            // logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
         }
 
         Intent intent = new Intent( cordova.getActivity(), PayWithMyBankActivity.class);
@@ -114,7 +114,7 @@ public class PayWithMyBank extends CordovaPlugin {
         if( intent == null || !intent.getAction().equals( Intent.ACTION_VIEW)) {
             return;
         }
-        logger.info( "PWMB: PayWithMyBank CordovaPlugin: onNewIntent()");
+        // logger.info( "PWMB: PayWithMyBank CordovaPlugin: onNewIntent()");
         this.webView.sendJavascript("window.PayWithMyBank.proceedToChooseAccount();");
 
     }

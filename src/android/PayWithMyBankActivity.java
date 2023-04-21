@@ -42,7 +42,7 @@ public class PayWithMyBankActivity extends AppCompatActivity {
         mStartLightboxForResult = this.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult( ActivityResult result) {
-                logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
+                // logger.info( "PWMB: PayWithMyBank...onActivityResult(): ");
                 trustlyWidget.removeAllViewsInLayout();
                 //trustlyWidget.destroy();
                 finish();
@@ -63,25 +63,25 @@ public class PayWithMyBankActivity extends AppCompatActivity {
         Iterator dataIter = this.establishData.keySet().iterator();
         while( dataIter.hasNext()) {
             String key = (String)dataIter.next();
-            logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
+            // logger.info( "PWMB: selectBankWidget(): "+key+" == "+(String)this.establishData.get( key));
         }
 
         int layout_id = resources.getIdentifier( "layout", "layout", package_name);
-        logger.info( "PWMB: layout_id == "+layout_id);
+        // logger.info( "PWMB: layout_id == "+layout_id);
         int trustly_widget_view_id = resources.getIdentifier( "trustlyWidgetView", "id", package_name);
-        logger.info( "PWMB: trustly_widget_view_id == "+trustly_widget_view_id);
+        // logger.info( "PWMB: trustly_widget_view_id == "+trustly_widget_view_id);
 
         this.setContentView( layout_id);
         trustlyWidget = this.findViewById( trustly_widget_view_id);
         trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
             @Override
             public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
-                logger.info( "PWMB: onBankSelected callback()");
+                // logger.info( "PWMB: onBankSelected callback()");
 
                 if( o2 instanceof HashMap) {
                     HashMap data = (HashMap)o2;
                     String paymentProviderId = (String)data.get( "paymentProviderId");
-                    logger.info( "PWMB: paymentProviderId = "+paymentProviderId);
+                    // logger.info( "PWMB: paymentProviderId = "+paymentProviderId);
                     establishData.put( "paymentProviderId", paymentProviderId);
                 }
 

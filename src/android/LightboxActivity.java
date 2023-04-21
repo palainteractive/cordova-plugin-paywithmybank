@@ -27,7 +27,7 @@ public class LightboxActivity extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState)
     {
-        logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onCreate()");
+        // logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onCreate()");
         super.onCreate( savedInstanceState);
         Intent intent = getIntent();
         Map<String,String> establishData = (Map<String,String>)intent.getSerializableExtra( ESTABLISH_DATA);
@@ -42,9 +42,9 @@ public class LightboxActivity extends AppCompatActivity {
         String package_name = app.getPackageName();
         Resources resources = app.getResources();
         int activity_light_box_id = resources.getIdentifier( "activity_light_box", "layout", package_name);
-        logger.info( "PWMB: activity_light_box_id == "+activity_light_box_id);
+        // logger.info( "PWMB: activity_light_box_id == "+activity_light_box_id);
         int light_box_widget_id = resources.getIdentifier( "lightBoxWidget", "id", package_name);
-        logger.info( "PWMB: light_box_widget_id == "+light_box_widget_id);
+        // logger.info( "PWMB: light_box_widget_id == "+light_box_widget_id);
         setContentView( activity_light_box_id);
 
         lightboxView = findViewById(light_box_widget_id);
@@ -53,12 +53,12 @@ public class LightboxActivity extends AppCompatActivity {
                         new PayWithMyBankCallback() {
                             @Override
                             public void handle(Object o, Object o2) {
-                                logger.info( "PWMB: LightboxView establish onReturn callback()");
-                                logger.info( "PWMB: o="+o.toString());
+                                // logger.info( "PWMB: LightboxView establish onReturn callback()");
+                                // logger.info( "PWMB: o="+o.toString());
 
                                 if( o2 instanceof HashMap) {
                                     HashMap data = (HashMap)o2;
-                                    logger.info( "PWMB: data = "+data.toString());
+                                    // logger.info( "PWMB: data = "+data.toString());
                                 }
                                 //lightboxView.destroy();
                                 myInstance.finish();
@@ -67,12 +67,12 @@ public class LightboxActivity extends AppCompatActivity {
                         new PayWithMyBankCallback() {
                             @Override
                             public void handle(Object o, Object o2) {
-                                logger.info( "PWMB: LightboxView establish onCancel callback()");
-                                logger.info( "PWMB: o="+o.toString());
+                                // logger.info( "PWMB: LightboxView establish onCancel callback()");
+                                // logger.info( "PWMB: o="+o.toString());
 
                                 if( o2 instanceof HashMap) {
                                     HashMap data = (HashMap)o2;
-                                    logger.info( "PWMB: data = "+data.toString());
+                                    // logger.info( "PWMB: data = "+data.toString());
                                 }
                                 //lightboxView.destroy();
                                 myInstance.finish();
@@ -83,7 +83,7 @@ public class LightboxActivity extends AppCompatActivity {
     @Override
     public void onRestart()
     {
-        logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
+        // logger.info( "PWMB: LightboxActivityLifecycle LightboxActivity.onRestart()");
         super.onRestart();
         //lightboxView.hybrid("javascript:PayWithMyBank.proceedToChooseAccount();", "msg://return", "msg://cancel");
         lightboxView.proceedToChooseAccount();
