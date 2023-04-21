@@ -10,7 +10,7 @@
 
 	<platform name="android">
 		<config-file parent="/*" target="res/xml/config.xml">
-			<feature name="PayWithMyBank">
+			<feature name="PayWithMyBankCordova">
 				<param name="android-package" value="com.boydgaming.paywithmybank.PayWithMyBank" />
 				<param name="onload" value="true" />
 			</feature>
