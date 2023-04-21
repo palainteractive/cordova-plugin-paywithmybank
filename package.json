@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-paywithmybank",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "Trustly paywithmybank android sdk",
   "cordova": {
     "id": "cordova-plugin-paywithmybank",
