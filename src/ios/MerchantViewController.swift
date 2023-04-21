@@ -16,14 +16,14 @@ class MerchantViewController: UIViewController {
 
         self.payWithMyBankView.onChangeListener { (eventName, attributes) in
             if let event = eventName, let data = attributes {
-                print("PWMB: MerchantViewController: onChangeListener: \(event) \(data)")
+                // print("PWMB: MerchantViewController: onChangeListener: \(event) \(data)")
             }
         }
         self.view = self.payWithMyBankView
         
         let _ = self.payWithMyBankView.selectBankWidget( self.establishData) { (view, data) in
             if let data = data {
-                print("PWMB: MerchantViewController: returnParameters:\(data)")
+                // print("PWMB: MerchantViewController: returnParameters:\(data)")
                 self.establishData = data
                 self.pay()
             }

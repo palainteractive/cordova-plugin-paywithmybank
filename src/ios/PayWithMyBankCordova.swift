@@ -26,7 +26,7 @@ class PayWithMyBankViewController: UIViewController {
         
         let _ = payWithMyBankPanel.selectBankWidget( self.establishData) { (view,data) in
             if let data = data {
-                print(  "PWMB: selectBankWidget: data: \(data)")
+                // print(  "PWMB: selectBankWidget: data: \(data)")
                 self.establishData = data
             }
         }
@@ -68,20 +68,20 @@ public class PayWithMyBankCordova: CDVPlugin {
                             let val = addressDict[addressKey]
                             let k = "\(key).\(customerKey).\(addressKey)"
                             self.establishData![ k] = String(describing: val!)
-                            print( "PWMB: selectBankWidget: \(k) == \(String(describing: val!))")
+                            // print( "PWMB: selectBankWidget: \(k) == \(String(describing: val!))")
                         }
                     } else {
                         let val = customerDict[customerKey]
                         let k = "\(key).\(customerKey)"
                         self.establishData![ k] = String(describing: val!)
-                        print( "PWMB: selectBankWidget: \(k) == \(String(describing: val!))")
+                        // print( "PWMB: selectBankWidget: \(k) == \(String(describing: val!))")
                     }
                 }
             }
             let val = params.value( forKey: key as! String)
             if val is String {
                 self.establishData![key as! String] = val!
-                print( "PWMB: selectBankWidget: \(key) == \(String(describing: val!))")
+                // print( "PWMB: selectBankWidget: \(key) == \(String(describing: val!))")
             }
         }
 

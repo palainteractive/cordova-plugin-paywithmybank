@@ -25,7 +25,7 @@ class TrustlyLightboxViewController: UIViewController {
         let trustlyLightboxPanel = PayWithMyBankView();
         
 //        for (k, v) in establishData! {
-//            print( "PWMB: TrustlyLightboxViewController: \(k) == \(v)")
+//            // print( "PWMB: TrustlyLightboxViewController: \(k) == \(v)")
 //        }
 
         self.view = trustlyLightboxPanel.establish(self.establishData , onReturn: {(payWithMyBank, returnParameters)->Void in
