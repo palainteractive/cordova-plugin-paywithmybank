@@ -7,5 +7,5 @@
 
 This Cordova plugin is for integration of the Trustly (Pay With My Bank) product with our B2B and Stardust customers.
 
-Presently there is an Android implementation.   For the iOS implementation, see capacitor-plugin-paywithmybank.    
-That project will soon be refactored and incorporated into this project.
+Both the Android and iOS implementations are passing local tests.   We are awaiting certification.
+
