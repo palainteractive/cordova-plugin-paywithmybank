@@ -43,8 +43,17 @@ public class PayWithMyBankCordova: CDVPlugin {
 
     @objc(selectBankWidget:)
     func selectBankWidget( command: CDVInvokedUrlCommand) {
+        self.establishData = ["_func":"selectBankWidget"]
+        return self.selectOrEstablish( command: command)
+    }
+    @objc(establish:)
+    func establish( command: CDVInvokedUrlCommand) {
+        self.establishData = ["_func":"establish"]
+        return self.selectOrEstablish( command: command)
+    }
+
+    func selectOrEstablish( command: CDVInvokedUrlCommand) {
         self.callInProgress = command
-        self.establishData = [:]
 
         //
         self.establishData!["metadata.urlScheme"]=APP_DEEP_LINK;

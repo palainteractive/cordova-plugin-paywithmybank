@@ -20,15 +20,29 @@ class MerchantViewController: UIViewController {
             }
         }
         self.view = self.payWithMyBankView
-        
-        let _ = self.payWithMyBankView.selectBankWidget( self.establishData) { (view, data) in
-            if let data = data {
-                // print("PWMB: MerchantViewController: returnParameters:\(data)")
-                self.establishData = data
-                self.pay()
-            }
+
+        var func = "selectBankWidget"
+        if self.establishData["_func"] == "establish" {
+            func = "establish"
         }
 
+        if( func == "selectBankWidget") {        
+            let _ = self.payWithMyBankView.selectBankWidget( self.establishData) { (view, data) in
+                if let data = data {
+                    // print("PWMB: MerchantViewController: returnParameters:\(data)")
+                    self.establishData = data
+                    self.pay()
+                }
+            }
+        } else {
+            let _ = self.payWithMyBankView.establish( self.establishData) { (view, data) in
+                if let data = data {
+                    // print("PWMB: MerchantViewController: returnParameters:\(data)")
+                    self.establishData = data
+                    self.pay()
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
