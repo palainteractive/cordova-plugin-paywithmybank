@@ -1,3 +1,4 @@
+import Cordova
 
 import Cordova
 import UIKit
@@ -22,7 +23,7 @@ class MerchantViewController: UIViewController {
         self.view = self.payWithMyBankView
 
         var methodToCall = "selectBankWidget"
-        if self.establishData["_methodToCall"] == "establish" {
+        if self.establishData["_methodToCall"] as! String == "establish" {
             methodToCall = "establish"
         }
 
@@ -37,13 +38,16 @@ class MerchantViewController: UIViewController {
             }
         } else {
             print( "PWMB: MerchantViewController.swift: executing establish( ...)")
-            let _ = self.payWithMyBankView.establish( self.establishData) { (view, data) in
-                if let data = data {
+            let _ = self.payWithMyBankView.establish( self.establishData,
+                                                      onReturn: {(payWithMyBank, returnParameters)->Void in
+                if let data = returnParameters {
                     // print("PWMB: MerchantViewController: returnParameters:\(data)")
                     self.establishData = data
                     self.pay()
                 }
-            }
+            }, onCancel: {(payWithMyBank, returnParameters)->Void in
+                print( "PWMB: MerchantViewController.swift: payWithMyBankView.establish onCancel() callback")
+            })
         }
     }
 
