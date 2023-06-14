@@ -43,12 +43,12 @@ public class PayWithMyBankCordova: CDVPlugin {
 
     @objc(selectBankWidget:)
     func selectBankWidget( command: CDVInvokedUrlCommand) {
-        self.establishData = ["_func":"selectBankWidget"]
+        self.establishData = ["_methodToCall":"selectBankWidget"]
         return self.selectOrEstablish( command: command)
     }
     @objc(establish:)
     func establish( command: CDVInvokedUrlCommand) {
-        self.establishData = ["_func":"establish"]
+        self.establishData = ["_methodToCall":"establish"]
         return self.selectOrEstablish( command: command)
     }
 

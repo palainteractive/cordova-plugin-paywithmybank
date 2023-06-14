@@ -21,12 +21,13 @@ class MerchantViewController: UIViewController {
         }
         self.view = self.payWithMyBankView
 
-        var func = "selectBankWidget"
-        if self.establishData["_func"] == "establish" {
-            func = "establish"
+        var methodToCall = "selectBankWidget"
+        if self.establishData["_methodToCall"] == "establish" {
+            methodToCall = "establish"
         }
 
-        if( func == "selectBankWidget") {        
+        if( methodToCall == "selectBankWidget") {        
+            print( "PWMB: MerchantViewController.swift: executing selectBankWidget( ...)")
             let _ = self.payWithMyBankView.selectBankWidget( self.establishData) { (view, data) in
                 if let data = data {
                     // print("PWMB: MerchantViewController: returnParameters:\(data)")
@@ -35,6 +36,7 @@ class MerchantViewController: UIViewController {
                 }
             }
         } else {
+            print( "PWMB: MerchantViewController.swift: executing establish( ...)")
             let _ = self.payWithMyBankView.establish( self.establishData) { (view, data) in
                 if let data = data {
                     // print("PWMB: MerchantViewController: returnParameters:\(data)")
