@@ -1,4 +1,5 @@
 import Cordova
+import Cordova
 
 import Cordova
 import UIKit
@@ -41,8 +42,12 @@ class MerchantViewController: UIViewController {
             print( "PWMB: MerchantViewController.swift: executing establish( ...)")
             let _ = self.payWithMyBankView.establish( self.establishData,
                                                       onReturn: {(payWithMyBank, returnParameters)->Void in
+                print( "PWMB: returnParameters \(String(describing: returnParameters))")
+                self.view.removeFromSuperview()
+                
             }, onCancel: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: MerchantViewController.swift: payWithMyBankView.establish onCancel() callback")
+                self.view.removeFromSuperview()
             })
         }
     }
