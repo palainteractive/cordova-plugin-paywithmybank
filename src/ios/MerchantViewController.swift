@@ -26,6 +26,7 @@ class MerchantViewController: UIViewController {
         if self.establishData["_methodToCall"] as! String == "establish" {
             methodToCall = "establish"
         }
+        self.establishData.removeValue( forKey: "_methodToCall")
 
         if( methodToCall == "selectBankWidget") {        
             print( "PWMB: MerchantViewController.swift: executing selectBankWidget( ...)")
@@ -40,11 +41,6 @@ class MerchantViewController: UIViewController {
             print( "PWMB: MerchantViewController.swift: executing establish( ...)")
             let _ = self.payWithMyBankView.establish( self.establishData,
                                                       onReturn: {(payWithMyBank, returnParameters)->Void in
-                if let data = returnParameters {
-                    // print("PWMB: MerchantViewController: returnParameters:\(data)")
-                    self.establishData = data
-                    self.pay()
-                }
             }, onCancel: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: MerchantViewController.swift: payWithMyBankView.establish onCancel() callback")
             })
