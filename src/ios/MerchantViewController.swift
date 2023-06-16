@@ -43,10 +43,10 @@ class MerchantViewController: UIViewController {
             let _ = self.payWithMyBankView.establish( self.establishData,
                                                       onReturn: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: returnParameters \(String(describing: returnParameters))")
-                self.dismiss()
+                self.dismiss( animated: true)
             }, onCancel: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: MerchantViewController.swift: payWithMyBankView.establish onCancel() callback")
-                self.dismiss()
+                self.dismiss( animated: true)
             })
         }
     }
