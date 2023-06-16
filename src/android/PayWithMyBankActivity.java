@@ -73,23 +73,61 @@ public class PayWithMyBankActivity extends AppCompatActivity {
 
         this.setContentView( layout_id);
         trustlyWidget = this.findViewById( trustly_widget_view_id);
-        trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
-            @Override
-            public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
-                // logger.info( "PWMB: onBankSelected callback()");
+        
+        public String funcToExecute = establishData.get("_funcToExecute");
+        establishData.remove( "_funcToExecute");
 
-                if( o2 instanceof HashMap) {
-                    HashMap data = (HashMap)o2;
-                    String paymentProviderId = (String)data.get( "paymentProviderId");
-                    // logger.info( "PWMB: paymentProviderId = "+paymentProviderId);
-                    establishData.put( "paymentProviderId", paymentProviderId);
+        if( funcToExecute.equals( "selectBankWidget")) {
+            trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
+                @Override
+                public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
+                    // logger.info( "PWMB: onBankSelected callback()");
+
+                    if( o2 instanceof HashMap) {
+                        HashMap data = (HashMap)o2;
+                        String paymentProviderId = (String)data.get( "paymentProviderId");
+                        // logger.info( "PWMB: paymentProviderId = "+paymentProviderId);
+                        establishData.put( "paymentProviderId", paymentProviderId);
+                    }
+
+                    Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
+                    intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
+                    mStartLightboxForResult.launch( intent);
+    //                startActivity( intent);
                 }
+            });
+        } else if( funcToExecute.equals( "establish")) {
+            trustlyWidget.establish( establishData) 
+                .onReturn(
+                        new PayWithMyBankCallback() {
+                            @Override
+                            public void handle(Object o, Object o2) {
+                                // logger.info( "PWMB: LightboxView establish onReturn callback()");
+                                // logger.info( "PWMB: o="+o.toString());
 
-                Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
-                intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
-                mStartLightboxForResult.launch( intent);
-//                startActivity( intent);
-            }
-        });
+                                if( o2 instanceof HashMap) {
+                                    HashMap data = (HashMap)o2;
+                                    // logger.info( "PWMB: data = "+data.toString());
+                                }
+                                //lightboxView.destroy();
+                                myInstance.finish();
+                            }
+                        }).onCancel(
+                        new PayWithMyBankCallback() {
+                            @Override
+                            public void handle(Object o, Object o2) {
+                                // logger.info( "PWMB: LightboxView establish onCancel callback()");
+                                // logger.info( "PWMB: o="+o.toString());
+
+                                // if( o2 instanceof HashMap) {
+                                //     HashMap data = (HashMap)o2;
+                                //     // logger.info( "PWMB: data = "+data.toString());
+                                // }
+                                //lightboxView.destroy();
+                                myInstance.finish();
+                            }
+                        });
+           
+        }
     }
 }

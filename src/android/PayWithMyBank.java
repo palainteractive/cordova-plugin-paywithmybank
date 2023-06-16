@@ -55,35 +55,39 @@ public class PayWithMyBank extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("selectBankWidget")) {
+        this.establishData.clear();
+        this.establishData.put( "_funcToExecute", action);
 
-            JSONObject establishDict = args.getJSONObject(0);
-            Iterator establishIter = establishDict.keys();
-            while( establishIter.hasNext()) {
-                String key = (String)establishIter.next();
-                if( key.equals( "customer")) {
-                    JSONObject customerDict = establishDict.getJSONObject("customer");
-                    Iterator customerIter = customerDict.keys();
-                    while (customerIter.hasNext()) {
-                        String customerKey = (String) customerIter.next();
-                        if (customerKey.equals("address")) {
-                            JSONObject addressDict = customerDict.getJSONObject("address");
-                            Iterator addressIter = addressDict.keys();
-                            while (addressIter.hasNext()) {
-                                String addressKey = (String) addressIter.next();
-                                this.establishData.put(key + "." + customerKey + "." + addressKey, addressDict.getString(addressKey));
-                            }
-                        } else {
-                            this.establishData.put(key + "." + customerKey, customerDict.getString(customerKey));
+        return this.executeBody( action, args, callbackContext);
+    }
+    @Override
+    public boolean executeBody(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject establishDict = args.getJSONObject(0);
+        Iterator establishIter = establishDict.keys();
+        while( establishIter.hasNext()) {
+            String key = (String)establishIter.next();
+            if( key.equals( "customer")) {
+                JSONObject customerDict = establishDict.getJSONObject("customer");
+                Iterator customerIter = customerDict.keys();
+                while (customerIter.hasNext()) {
+                    String customerKey = (String) customerIter.next();
+                    if (customerKey.equals("address")) {
+                        JSONObject addressDict = customerDict.getJSONObject("address");
+                        Iterator addressIter = addressDict.keys();
+                        while (addressIter.hasNext()) {
+                            String addressKey = (String) addressIter.next();
+                            this.establishData.put(key + "." + customerKey + "." + addressKey, addressDict.getString(addressKey));
                         }
+                    } else {
+                        this.establishData.put(key + "." + customerKey, customerDict.getString(customerKey));
                     }
-                } else {
-                    this.establishData.put( key, establishDict.getString( key));
                 }
+            } else {
+                this.establishData.put( key, establishDict.getString( key));
             }
-            this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
-            // logger.info( "PWMB: establishData: "+this.establishData.toString());
-
+        }
+        this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
+        if (action.equals("selectBankWidget") || action.equals("establish")) {
             this.selectBankWidget( callbackContext);
             return true;
         }
