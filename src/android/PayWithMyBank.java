@@ -60,7 +60,6 @@ public class PayWithMyBank extends CordovaPlugin {
 
         return this.executeBody( action, args, callbackContext);
     }
-    @Override
     public boolean executeBody(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         JSONObject establishDict = args.getJSONObject(0);
         Iterator establishIter = establishDict.keys();
