@@ -1,5 +1,6 @@
 import Cordova
 import Cordova
+import Cordova
 
 import Cordova
 import UIKit
@@ -44,6 +45,11 @@ class MerchantViewController: UIViewController {
                                                       onReturn: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: returnParameters \(String(describing: returnParameters))")
                 self.dismiss( animated: true)
+                let transactionId = returnParameters?["transactionId"]
+                if let transactionId = transactionId {
+                    self.delegate?.onReturnWithTransactionId(transactionId: transactionId)
+                }
+
             }, onCancel: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: MerchantViewController.swift: payWithMyBankView.establish onCancel() callback")
                 self.dismiss( animated: true)
@@ -78,3 +84,4 @@ extension MerchantViewController: TrustlyLightboxViewProtocol {
     }
 
 }
+
