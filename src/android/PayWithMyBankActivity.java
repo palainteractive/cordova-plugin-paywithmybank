@@ -73,7 +73,7 @@ public class PayWithMyBankActivity extends AppCompatActivity {
 
         this.setContentView( layout_id);
         trustlyWidget = this.findViewById( trustly_widget_view_id);
-        
+
         String funcToExecute = establishData.get("_funcToExecute");
         establishData.remove( "_funcToExecute");
 
@@ -97,37 +97,9 @@ public class PayWithMyBankActivity extends AppCompatActivity {
                 }
             });
         } else if( funcToExecute.equals( "establish")) {
-            trustlyWidget.establish( establishData) 
-                .onReturn(
-                        new PayWithMyBankCallback() {
-                            @Override
-                            public void handle(Object o, Object o2) {
-                                // logger.info( "PWMB: LightboxView establish onReturn callback()");
-                                // logger.info( "PWMB: o="+o.toString());
-
-                                if( o2 instanceof HashMap) {
-                                    HashMap data = (HashMap)o2;
-                                    // logger.info( "PWMB: data = "+data.toString());
-                                }
-                                //lightboxView.destroy();
-                                finish();
-                            }
-                        }).onCancel(
-                        new PayWithMyBankCallback() {
-                            @Override
-                            public void handle(Object o, Object o2) {
-                                // logger.info( "PWMB: LightboxView establish onCancel callback()");
-                                // logger.info( "PWMB: o="+o.toString());
-
-                                // if( o2 instanceof HashMap) {
-                                //     HashMap data = (HashMap)o2;
-                                //     // logger.info( "PWMB: data = "+data.toString());
-                                // }
-                                //lightboxView.destroy();
-                                finish();
-                            }
-                        });
-           
+          Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
+          intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
+          mStartLightboxForResult.launch( intent);
         }
     }
 }
