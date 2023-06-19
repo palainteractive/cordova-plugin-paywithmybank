@@ -74,7 +74,7 @@ public class PayWithMyBankActivity extends AppCompatActivity {
         this.setContentView( layout_id);
         trustlyWidget = this.findViewById( trustly_widget_view_id);
         
-        public String funcToExecute = establishData.get("_funcToExecute");
+        String funcToExecute = establishData.get("_funcToExecute");
         establishData.remove( "_funcToExecute");
 
         if( funcToExecute.equals( "selectBankWidget")) {
