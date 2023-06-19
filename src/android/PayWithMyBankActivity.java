@@ -110,7 +110,7 @@ public class PayWithMyBankActivity extends AppCompatActivity {
                                     // logger.info( "PWMB: data = "+data.toString());
                                 }
                                 //lightboxView.destroy();
-                                myInstance.finish();
+                                finish();
                             }
                         }).onCancel(
                         new PayWithMyBankCallback() {
@@ -124,7 +124,7 @@ public class PayWithMyBankActivity extends AppCompatActivity {
                                 //     // logger.info( "PWMB: data = "+data.toString());
                                 // }
                                 //lightboxView.destroy();
-                                myInstance.finish();
+                                finish();
                             }
                         });
            
