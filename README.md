@@ -15,6 +15,8 @@ The web implementation has passed, videos demonstrating iOS and Android ExpiredS
 
 ### installation in ionic 4:
 
+  - You must set your GH_TOKEN shell var to a token that has access to the repository (we have a role account on GitHub `palainteractivedev` that issues tokens for the build machines).
+
 ```bash
 npm install --save https://github.com/palainteractive/cordova-plugin-paywithmybank
 ```
