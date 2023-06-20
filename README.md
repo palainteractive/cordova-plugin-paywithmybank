@@ -22,12 +22,6 @@ npm install --save https://github.com/palainteractive/cordova-plugin-paywithmyba
 ### installation in ionic 2:
 
 ```bash
-cordova add --save https://github.com/palainteractive/cordova-plugin-paywithmybank
-```
-
-note: if there are github authentication issues with cordova add due to older versions of cordova-cli, it may be necessary to use:
-
-```bash
 git clone https://github.com/palainteractive/cordova-plugin-paywithmybank
 cordova add --save ./cordova-plugin-paywithmybank
 ```
