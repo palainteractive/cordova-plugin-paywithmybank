@@ -13,9 +13,21 @@ Both the Android and iOS implementations are passing local tests.
 
 The web implementation has passed, videos demonstrating iOS and Android ExpiredSplitToken test have been submitted.
 
-### installation:
+### installation in ionic 4:
 
 ```bash
 npm install --save https://github.com/palainteractive/cordova-plugin-paywithmybank
 ```
 
+### installation in ionic 2:
+
+```bash
+cordova add --save https://github.com/palainteractive/cordova-plugin-paywithmybank
+```
+
+note: if there are github authentication issues with cordova add due to older versions of cordova-cli, it may be necessary to use:
+
+```bash
+git clone https://github.com/palainteractive/cordova-plugin-paywithmybank
+cordova add --save ./cordova-plugin-paywithmybank
+```
