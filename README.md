@@ -1,4 +1,4 @@
-# cordova-plugin-paywithmybank
+# cordova-plugin-paywithmybank (Trustly)
 #### Pala Interactive - Internal documentation
 #### author: Dan Shields
 #### created: 2023-03-21
