@@ -86,6 +86,8 @@ public class PayWithMyBank extends CordovaPlugin {
             }
         }
         this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
+        this.establishData.put( "metadata.integrationContext", "InAppBrowser");
+
         if (action.equals("selectBankWidget") || action.equals("establish")) {
             this.selectBankWidget( callbackContext);
             return true;
