@@ -24,3 +24,28 @@ npm install --save https://github.com/palainteractive/cordova-plugin-paywithmyba
 ```bash
 cordova plugin add https://github.com/palainteractive/cordova-plugin-paywithmybank
 ```
+
+### typescript interface (selectBankWidget):
+
+```typescript
+          window.cordova.plugins.PayWithMyBank.selectBankWidget( data, () => {
+            // success callback
+          }, (err) => {
+            // error callback
+          });
+```
+
+
+### typescript interface (establish):
+
+In some cases (e.g. ExpiredSplitToken, Truncated or missing Split Token) the user should be asked to authenticate once more, the `establiosh()` call handles this.
+
+```typescript
+          window.cordova.plugins.PayWithMyBank.establish( data, () => {
+            // success callback
+          }, (err) => {
+            // error callback
+          });
+```
+
+
