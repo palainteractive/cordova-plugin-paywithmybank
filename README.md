@@ -27,12 +27,14 @@ cordova plugin add https://github.com/palainteractive/cordova-plugin-paywithmyba
 
 ### typescript interface (selectBankWidget):
 
+`data` has the same structure as defined by the web implementation.
+
 ```typescript
-          window.cordova.plugins.PayWithMyBank.selectBankWidget( data, () => {
-            // success callback
-          }, (err) => {
-            // error callback
-          });
+window.cordova.plugins.PayWithMyBank.selectBankWidget( data, () => {
+  // success callback
+}, (err) => {
+  // error callback
+});
 ```
 
 
@@ -40,12 +42,14 @@ cordova plugin add https://github.com/palainteractive/cordova-plugin-paywithmyba
 
 In some cases (e.g. ExpiredSplitToken, Truncated or missing Split Token) the user should be asked to authenticate once more, the `establiosh()` call handles this.
 
+`data` has the same structure as defined by the web implementation.
+
 ```typescript
-          window.cordova.plugins.PayWithMyBank.establish( data, () => {
-            // success callback
-          }, (err) => {
-            // error callback
-          });
+window.cordova.plugins.PayWithMyBank.establish( data, () => {
+  // success callback
+}, (err) => {
+  // error callback
+});
 ```
 
 
