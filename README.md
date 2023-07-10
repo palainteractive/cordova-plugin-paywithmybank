@@ -40,7 +40,7 @@ window.cordova.plugins.PayWithMyBank.selectBankWidget( data, () => {
 
 ### typescript interface (establish):
 
-In some cases (e.g. ExpiredSplitToken, Truncated or missing Split Token) the user should be asked to authenticate once more, the `establiosh()` call handles this.
+In some cases (e.g. ExpiredSplitToken, Truncated or missing Split Token) the user should be asked to authenticate once more, the `establish()` call handles this.
 
 `data` has the same structure as defined by the web implementation.
 
