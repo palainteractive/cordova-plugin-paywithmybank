@@ -2,7 +2,6 @@ import Cordova
 import Foundation
 import PayWithMyBank
 
-
 /**
  * #### Pala Interactive - Internal documentation
  * #### Cordova Plugin - Trustly PayWithMyBank v2.3.0
