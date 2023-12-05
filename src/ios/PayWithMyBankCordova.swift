@@ -93,6 +93,16 @@ public class PayWithMyBankCordova: CDVPlugin {
             }
         }
 
+        if let establishData = self.establishData {
+            for (key, value) in establishData {
+                print("TRUSTLY: \(key) = \(value)")
+            }
+        } else {
+            print("TRUSTLY: establishData is nil")
+        }
+
+
+
         DispatchQueue.main.async {
             let merchantViewController = MerchantViewController();
             merchantViewController.delegate = PayWithMyBankDelegate(
