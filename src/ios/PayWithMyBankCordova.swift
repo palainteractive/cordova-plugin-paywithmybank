@@ -93,13 +93,21 @@ public class PayWithMyBankCordova: CDVPlugin {
             }
         }
 
-        if let establishData = self.establishData {
-            for (key, value) in establishData {
-                print("TRUSTLY: \(key) = \(value)")
+        if self.establishData != nil {
+            // Check if the key 'env' exists and has the value 'production'
+            if self.establishData!["env"] as! String == "production" {
+                // Remove the key 'env' from the map
+                self.establishData!.removeValue(forKey: "env")
             }
+
+            // // Now iterate through the map and print its contents
+            // for (key, value) in self.establishData! {
+            //     print("TRUSTLY: \(key) = \(value)")
+            // }
         } else {
-            print("TRUSTLY: establishData is nil")
+            // print("TRUSTLY: establishData is nil")
         }
+
 
 
 
