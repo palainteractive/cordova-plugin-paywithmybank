@@ -99,7 +99,7 @@ public class PayWithMyBankCordova: CDVPlugin {
 
         if self.establishData != nil {
             // Check if the key 'env' exists and has the value 'production'
-            if self.establishData!["env"] as! String == "production" {
+            if let establishData = self.establishData, let env = establishData["env"] as? String, env == "production" {
                 // Remove the key 'env' from the map
                 self.establishData!.removeValue(forKey: "env")
             }
