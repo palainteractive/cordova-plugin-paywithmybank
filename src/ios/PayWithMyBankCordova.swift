@@ -105,11 +105,11 @@ public class PayWithMyBankCordova: CDVPlugin {
             }
 
             // // Now iterate through the map and print its contents
-            // for (key, value) in self.establishData! {
-            //     print("TRUSTLY: \(key) = \(value)")
-            // }
+            for (key, value) in self.establishData! {
+                print("TRUSTLY: \(key) = \(value)")
+            }
         } else {
-            // print("TRUSTLY: establishData is nil")
+            print("TRUSTLY: establishData is nil")
         }
 
 
