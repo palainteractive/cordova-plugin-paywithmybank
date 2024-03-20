@@ -85,6 +85,12 @@ public class PayWithMyBank extends CordovaPlugin {
                 this.establishData.put( key, establishDict.getString( key));
             }
         }
+        // Check if the "env" parameter exists and has the value "production"
+        if (establishDict.has("env") && establishDict.getString("env").equals("production")) {
+            // Remove the "env" parameter from the JSONObject
+            establishDict.remove("env");
+        }
+        
         this.establishData.put( "metadata.urlScheme", "com.boydgaming.paywithmybank://");
         this.establishData.put( "metadata.integrationContext", "InAppBrowser");
 
