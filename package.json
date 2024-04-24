@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-paywithmybank",
-  "version": "0.2.5",
-  "description": "Trustly paywithmybank android sdk",
+  "version": "0.3.0",
+  "description": "Trustly ios/android cordova plugin",
   "cordova": {
     "id": "cordova-plugin-paywithmybank",
     "platforms": [
@@ -24,7 +24,7 @@
       "version": ">=4.0.0"
     }
   ],
-  "author": "GeoTech-VN",
+  "author": "DanShieldsPala",
   "license": "palainteractive",
   "bugs": {
     "url": "https://github.com/palainteractive/cordova-plugin-paywithmybank/issues"

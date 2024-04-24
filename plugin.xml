@@ -46,7 +46,11 @@
 		<source-file src="src/ios/PayWithMyBankCordova.swift" />
 		<source-file src="src/ios/MerchantViewController.swift" />
 		<source-file src="src/ios/TrustlyLightboxViewController.swift" />
-		<framework src="res/ios/PayWithMyBank.xcframework" embed="true" custom="true" />
+		<podspec>
+			<pods use-frameworks="true">
+				<pod name="TrustlySDK" git="https://github.com/TrustlyInc/trustly-ios.git" tag="SPECIFIC_TAG"/>
+			</pods>
+		</podspec>
 	</platform>
 </plugin>
 

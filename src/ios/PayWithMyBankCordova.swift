@@ -1,29 +1,29 @@
 import Cordova
 import Foundation
-import PayWithMyBank
+import TrustlySDK
 
 /**
  * #### Pala Interactive - Internal documentation
- * #### Cordova Plugin - Trustly PayWithMyBank v2.3.0
+ * #### Cordova Plugin - Trustly Trustly SDK v3.1.0
  * #### author: Dan Shields
-  * #### created: 2023-02-17
+ * #### created: 2023-02-17
  */
 
-protocol PayWithMyBankViewProtocol {
+protocol TrustlyViewProtocol {
     func onReturnWithTransactionId( transactionId: Any);
     func onCancelWithTransactionId( transactionId: Any?);
 }
 
-class PayWithMyBankViewController: UIViewController {
+class TrustlyViewController: UIViewController {
     
     var establishData:Dictionary<AnyHashable,Any>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let payWithMyBankPanel = PayWithMyBankView()
+        let trustlyPanel = TrustlyView()
         
-        let _ = payWithMyBankPanel.selectBankWidget( self.establishData) { (view,data) in
+        let _ = trustlyPanel.selectBankWidget( self.establishData) { (view,data) in
             if let data = data {
                 // print(  "PWMB: selectBankWidget: data: \(data)")
                 self.establishData = data
@@ -36,7 +36,7 @@ class PayWithMyBankViewController: UIViewController {
 @objc(PayWithMyBankCordova)
 public class PayWithMyBankCordova: CDVPlugin {
     private var establishData:Dictionary<AnyHashable,Any>?
-    var trustly: PayWithMyBankView!
+    var trustly: TrustlyView!
     private var callInProgress: CDVInvokedUrlCommand? = nil
     var APP_DEEP_LINK = ""
 
@@ -117,7 +117,7 @@ public class PayWithMyBankCordova: CDVPlugin {
 
         DispatchQueue.main.async {
             let merchantViewController = MerchantViewController();
-            merchantViewController.delegate = PayWithMyBankDelegate(
+            merchantViewController.delegate = TrustlyDelegate(
                 viewController: self.viewController!,
                 commandDelegate: self.commandDelegate!,
                 callInProgress: self.callInProgress!)
@@ -125,7 +125,7 @@ public class PayWithMyBankCordova: CDVPlugin {
             self.viewController!.present( merchantViewController, animated: true, completion: nil)
         }
     }
-    public class PayWithMyBankDelegate: PayWithMyBankViewProtocol {
+    public class TrustlyDelegate: TrustlyViewProtocol {
         var viewController: UIViewController
         var commandDelegate:CDVCommandDelegate
         var callInProgress:CDVInvokedUrlCommand
