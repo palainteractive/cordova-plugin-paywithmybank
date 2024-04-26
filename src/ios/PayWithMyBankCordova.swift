@@ -25,10 +25,8 @@ class TrustlyViewController: UIViewController {
         let trustlyPanel = TrustlyView()
         
         let _ = trustlyPanel.selectBankWidget( establishData: self.establishData!) { (view,data) in
-            if let data = data {
-                // print(  "PWMB: selectBankWidget: data: \(data)")
-                self.establishData = data
-            }
+            // print(  "PWMB: selectBankWidget: data: \(data)")
+            self.establishData = data
         }
 
     }
