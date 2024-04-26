@@ -48,7 +48,7 @@
 		<source-file src="src/ios/TrustlyLightboxViewController.swift" />
 		<podspec>
 			<pods use-frameworks="true">
-				<pod name="TrustlySDK" git="https://github.com/TrustlyInc/trustly-ios.git" />
+				<pod name="TrustlySDK" git="https://github.com/TrustlyInc/trustly-ios.git" branch="main" />
 			</pods>
 		</podspec>
 	</platform>
