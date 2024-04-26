@@ -1,8 +1,8 @@
+import Cordova
 //
 //  TrustlyLightboxViewController.swift
-//  TrustlySDKDemoIOS
 //
-//  Created by Marcos Rivereto on 13/01/23.
+// Created by Dan Shields on 2024-04-26
 //
 
 import UIKit
@@ -28,7 +28,7 @@ class TrustlyLightboxViewController: UIViewController {
 //            // print( "PWMB: TrustlyLightboxViewController: \(k) == \(v)")
 //        }
 
-        self.view = trustlyLightboxPanel.establish(self.establishData , onReturn: {(payWithMyBank, returnParameters)->Void in
+        self.view = trustlyLightboxPanel.establish(establishData: self.establishData! , onReturn: {(payWithMyBank, returnParameters)->Void in
                 let response = returnParameters as! [String:String]
                 self.delegate?.onReturnWithTransactionId(transactionId: response["transactionId"]!, controller: self)
             

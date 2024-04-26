@@ -1,3 +1,4 @@
+import Cordova
 import UIKit
 import TrustlySDK
 
@@ -13,9 +14,6 @@ class MerchantViewController: UIViewController {
         super.viewDidLoad()
 
         self.trustlyView.onChangeListener { (eventName, attributes) in
-            if let event = eventName, let data = attributes {
-                // print("PWMB: MerchantViewController: onChangeListener: \(event) \(data)")
-            }
         }
         self.view = self.trustlyView
 
@@ -27,20 +25,18 @@ class MerchantViewController: UIViewController {
 
         if( methodToCall == "selectBankWidget") {        
             print( "PWMB: MerchantViewController.swift: executing selectBankWidget( ...)")
-            let _ = self.trustlyView.selectBankWidget( self.establishData) { (view, data) in
-                if let data = data {
-                    // print("PWMB: MerchantViewController: returnParameters:\(data)")
-                    self.establishData = data
-                    self.pay()
-                }
+            let _ = self.trustlyView.selectBankWidget( establishData: self.establishData) { (view, data) in
+                // print("PWMB: MerchantViewController: returnParameters:\(data)")
+                self.establishData = data
+                self.pay()
             }
         } else {
             print( "PWMB: MerchantViewController.swift: executing establish( ...)")
-            let _ = self.trustlyView.establish( self.establishData,
+            let _ = self.trustlyView.establish( establishData: self.establishData,
                                                       onReturn: {(payWithMyBank, returnParameters)->Void in
                 print( "PWMB: returnParameters \(String(describing: returnParameters))")
                 self.dismiss( animated: true)
-                let transactionId = returnParameters?["transactionId"]
+                let transactionId = returnParameters["transactionId"]
                 if let transactionId = transactionId {
                     self.delegate?.onReturnWithTransactionId(transactionId: transactionId)
                 }

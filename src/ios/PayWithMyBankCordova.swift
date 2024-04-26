@@ -1,4 +1,5 @@
 import Cordova
+import Cordova
 import Foundation
 import TrustlySDK
 
@@ -23,7 +24,7 @@ class TrustlyViewController: UIViewController {
         
         let trustlyPanel = TrustlyView()
         
-        let _ = trustlyPanel.selectBankWidget( self.establishData) { (view,data) in
+        let _ = trustlyPanel.selectBankWidget( establishData: self.establishData!) { (view,data) in
             if let data = data {
                 // print(  "PWMB: selectBankWidget: data: \(data)")
                 self.establishData = data
