@@ -1,4 +1,4 @@
-import Cordova
+//
 import Cordova
 import Foundation
 import TrustlySDK
