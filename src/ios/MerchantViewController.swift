@@ -7,7 +7,10 @@ class MerchantViewController: UIViewController {
 
     var trustlyView = TrustlyView()
     var establishData:Dictionary<AnyHashable,Any> = [:]
+
+    /** unused?
     var trustlyPanel = TrustlyView()
+    */
     
     var delegate: TrustlyViewProtocol?
 
@@ -16,6 +19,7 @@ class MerchantViewController: UIViewController {
 
         self.trustlyView.onChangeListener { (eventName, attributes) in
         }
+        self.trustlyView.backgroundColor = .white
         self.view = self.trustlyView
 
         var methodToCall = "selectBankWidget"
