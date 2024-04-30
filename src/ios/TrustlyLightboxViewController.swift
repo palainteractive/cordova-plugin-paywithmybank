@@ -23,20 +23,24 @@ class TrustlyLightboxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let trustlyLightboxPanel = TrustlyView();
-        trustlyLightboxPanel.backgroundColor = .white  // Setting the background color to white
-        
-//        for (k, v) in establishData! {
-//            // print( "PWMB: TrustlyLightboxViewController: \(k) == \(v)")
-//        }
+        // Create a container view with a white background
+        let containerView = UIView()
+        containerView.backgroundColor = .white
+        containerView.frame = self.view.bounds  // Adjust the frame as needed
+        self.view.addSubview(containerView)
 
-        self.view = trustlyLightboxPanel.establish(establishData: self.establishData! , onReturn: {(payWithMyBank, returnParameters)->Void in
-                let response = returnParameters as! [String:String]
-                self.delegate?.onReturnWithTransactionId(transactionId: response["transactionId"]!, controller: self)
-            
-            }, onCancel: {(payWithMyBank, returnParameters)->Void in
-                let response = returnParameters as! [String:String]
-                self.delegate?.onCancelWithTransactionId(transactionId: response["transactionId"], controller: self)
+        // Initialize TrustlyView
+        let trustlyLightboxPanel = TrustlyView()
+        containerView.addSubview(trustlyLightboxPanel)
+        trustlyLightboxPanel.frame = containerView.bounds  // Adjust the frame as needed
+
+        // Setup TrustlyView
+        trustlyLightboxPanel.establish(establishData: self.establishData!, onReturn: { (payWithMyBank, returnParameters) -> Void in
+            let response = returnParameters as! [String:String]
+            self.delegate?.onReturnWithTransactionId(transactionId: response["transactionId"]!, controller: self)
+        }, onCancel: { (payWithMyBank, returnParameters) -> Void in
+            let response = returnParameters as! [String:String]
+            self.delegate?.onCancelWithTransactionId(transactionId: response["transactionId"], controller: self)
         })
         
     }
