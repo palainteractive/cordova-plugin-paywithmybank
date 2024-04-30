@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-paywithmybank",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Trustly ios/android cordova plugin",
   "cordova": {
     "id": "cordova-plugin-paywithmybank",
