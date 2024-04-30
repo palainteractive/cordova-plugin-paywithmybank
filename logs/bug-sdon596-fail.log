@@ -1,0 +1,19 @@
+To Native Cordova ->  PayWithMyBankCordova selectBankWidget PayWithMyBankCordova1339707875 ["options": [{
+    accessId = Em1SRtClMMEe9Gmn3OI7;
+    cancelUrl = "#cancel";
+    customer =     {
+    };
+    env = sandbox;
+    merchantId = 1175;
+    paymentType = Deferred;
+    requestSignature = "tSxnwGqVOCv+GrRVt7G21vtHzzc=";
+    returnUrl = "#return";
+}]]
+TRUSTLY: metadata.urlScheme = com.palainteractive.canplaycasino.ontario.paywithmybank://
+TRUSTLY: env = sandbox
+TRUSTLY: _methodToCall = selectBankWidget
+TRUSTLY: requestSignature = tSxnwGqVOCv+GrRVt7G21vtHzzc=
+TRUSTLY: paymentType = Deferred
+TRUSTLY: metadata.integrationContext = InAppBrowser
+TRUSTLY: accessId = Em1SRtClMMEe9Gmn3OI7
+TRUSTLY: merchantId = 1175

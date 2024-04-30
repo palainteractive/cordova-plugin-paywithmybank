@@ -1,0 +1,52 @@
+To Native Cordova ->  PayWithMyBankCordova selectBankWidget PayWithMyBankCordova298242462 ["options": [{
+    accessId = WS8vT7ftpHImaeLB5FSx;
+    cancelUrl = "#cancel";
+    customer =     {
+        address =         {
+            address1 = "123 Baz Way";
+            city = Wazoo;
+            country = CA;
+            state = ON;
+            zip = "L1N 9W5";
+        };
+        customerId = 34;
+        dateOfBirth = "1992-02-02";
+        email = "palatest0101@yopmail.com";
+        externalId = 34;
+        merchantId = 1051;
+        name = "foo bar";
+        phone = "+114167121542";
+        taxId = "crypt:wuDRORq2BmNdj57PxbtIcw==";
+    };
+    env = sandbox;
+    merchantId = 1051;
+    merchantReference = "1714145460093|BSeNNbcLN2391JPbGGGxNBVtHGiLqOrj2pVXkyeABzFknWjIHU7p-w";
+    paymentType = Deferred;
+    requestSignature = "mOPBHn8LFTJjEjo/W78Ux0bEnr4=";
+    returnUrl = "#return";
+}]]
+TRUSTLY: requestSignature = mOPBHn8LFTJjEjo/W78Ux0bEnr4=
+TRUSTLY: customer.taxId = crypt:wuDRORq2BmNdj57PxbtIcw==
+TRUSTLY: customer.merchantId = 1051
+TRUSTLY: customer.customerId = 34
+TRUSTLY: customer.address.state = ON
+TRUSTLY: customer.address.zip = L1N 9W5
+TRUSTLY: customer.address.city = Wazoo
+TRUSTLY: accessId = WS8vT7ftpHImaeLB5FSx
+TRUSTLY: customer.dateOfBirth = 1992-02-02
+TRUSTLY: metadata.integrationContext = InAppBrowser
+TRUSTLY: env = sandbox
+TRUSTLY: metadata.urlScheme = com.boydgaming.stardustcasino.paywithmybank://
+TRUSTLY: merchantReference = 1714145460093|BSeNNbcLN2391JPbGGGxNBVtHGiLqOrj2pVXkyeABzFknWjIHU7p-w
+TRUSTLY: customer.address.address1 = 123 Baz Way
+TRUSTLY: merchantId = 1051
+TRUSTLY: customer.name = foo bar
+TRUSTLY: _methodToCall = selectBankWidget
+TRUSTLY: customer.phone = +114167121542
+TRUSTLY: paymentType = Deferred
+TRUSTLY: customer.email = palatest0101@yopmail.com
+TRUSTLY: customer.address.country = CA
+TRUSTLY: customer.externalId = 34
+-[RTIInputSystemClient remoteTextInputSessionWithID:performInputOperation:]  perform input operation requires a valid sessionID. inputModality = Keyboard, inputOperation = <null selector>, customInfoType = UIEmojiSearchOperations
+PWMB: MerchantViewController.swift: executing selectBankWidget( ...)
+Failed to request allowed query parameters from WebPrivacy.
