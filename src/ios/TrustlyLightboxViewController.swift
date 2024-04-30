@@ -24,6 +24,7 @@ class TrustlyLightboxViewController: UIViewController {
         super.viewDidLoad()
         
         let trustlyLightboxPanel = TrustlyView();
+        trustlyLightboxPanel.backgroundColor = .white  // Setting the background color to white
         
 //        for (k, v) in establishData! {
 //            // print( "PWMB: TrustlyLightboxViewController: \(k) == \(v)")
