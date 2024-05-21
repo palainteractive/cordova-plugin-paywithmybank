@@ -19,18 +19,20 @@ class TrustlyLightboxViewController: UIViewController {
     
     var establishData:Dictionary<AnyHashable,Any>?
     var delegate: TrustlyLightboxViewProtocol?
+    var containerView: UIView!
+    var trustlyLightboxPanel: TrustlyView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Create a container view with a white background
-        let containerView = UIView()
+        containerView = UIView()
         containerView.backgroundColor = .white
         containerView.frame = self.view.bounds  // Adjust the frame as needed
         self.view.addSubview(containerView)
 
         // Initialize TrustlyView
-        let trustlyLightboxPanel = TrustlyView()
+        trustlyLightboxPanel = TrustlyView()
         containerView.addSubview(trustlyLightboxPanel)
         trustlyLightboxPanel.frame = containerView.bounds  // Adjust the frame as needed
 
@@ -43,6 +45,20 @@ class TrustlyLightboxViewController: UIViewController {
             self.delegate?.onCancelWithTransactionId(transactionId: response["transactionId"], controller: self)
         })
         
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            // Update the frames of containerView and trustlyLightboxPanel to match the screen bounds
+            guard let screenWidth = self?.view.window?.bounds.width,
+                  let screenHeight = self?.view.window?.bounds.height else {
+                return
+            }
+            self?.containerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+            self?.trustlyLightboxPanel.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        }, completion: nil)
     }
     
 }

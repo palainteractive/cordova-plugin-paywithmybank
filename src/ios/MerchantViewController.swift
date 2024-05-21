@@ -62,6 +62,7 @@ class MerchantViewController: UIViewController {
         let trustlyLightboxViewController = TrustlyLightboxViewController()
         trustlyLightboxViewController.delegate = self
         trustlyLightboxViewController.establishData = establishData
+        trustlyLightboxViewController.modalPresentationStyle = .fullScreen
         self.present(trustlyLightboxViewController, animated: true)
     }
     
