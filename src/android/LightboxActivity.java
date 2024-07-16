@@ -48,36 +48,41 @@ public class LightboxActivity extends AppCompatActivity {
         setContentView( activity_light_box_id);
 
         lightboxView = findViewById(light_box_widget_id);
-        lightboxView.establish( establishData)
-                .onReturn(
-                        new PayWithMyBankCallback() {
-                            @Override
-                            public void handle(Object o, Object o2) {
-                                // logger.info( "PWMB: LightboxView establish onReturn callback()");
-                                // logger.info( "PWMB: o="+o.toString());
+        if (establishData != null) {
+            lightboxView.establish( establishData)
+                    .onReturn(
+                            new PayWithMyBankCallback() {
+                                @Override
+                                public void handle(Object o, Object o2) {
+                                    // logger.info( "PWMB: LightboxView establish onReturn callback()");
+                                    // logger.info( "PWMB: o="+o.toString());
 
-                                if( o2 instanceof HashMap) {
-                                    HashMap data = (HashMap)o2;
-                                    // logger.info( "PWMB: data = "+data.toString());
+                                    if( o2 instanceof HashMap) {
+                                        HashMap data = (HashMap)o2;
+                                        // logger.info( "PWMB: data = "+data.toString());
+                                    }
+                                    //lightboxView.destroy();
+                                    myInstance.finish();
                                 }
-                                //lightboxView.destroy();
-                                myInstance.finish();
-                            }
-                        }).onCancel(
-                        new PayWithMyBankCallback() {
-                            @Override
-                            public void handle(Object o, Object o2) {
-                                // logger.info( "PWMB: LightboxView establish onCancel callback()");
-                                // logger.info( "PWMB: o="+o.toString());
+                            }).onCancel(
+                            new PayWithMyBankCallback() {
+                                @Override
+                                public void handle(Object o, Object o2) {
+                                    // logger.info( "PWMB: LightboxView establish onCancel callback()");
+                                    // logger.info( "PWMB: o="+o.toString());
 
-                                // if( o2 instanceof HashMap) {
-                                //     HashMap data = (HashMap)o2;
-                                //     // logger.info( "PWMB: data = "+data.toString());
-                                // }
-                                //lightboxView.destroy();
-                                myInstance.finish();
-                            }
-                        });
+                                    // if( o2 instanceof HashMap) {
+                                    //     HashMap data = (HashMap)o2;
+                                    //     // logger.info( "PWMB: data = "+data.toString());
+                                    // }
+                                    //lightboxView.destroy();
+                                    myInstance.finish();
+                                }
+                            });
+        } else {
+            logger.warning("establishData is null.");
+            finish();
+        }
     }
 
     @Override
