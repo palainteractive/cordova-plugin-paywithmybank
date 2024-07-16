@@ -102,8 +102,6 @@ public class PayWithMyBankActivity extends AppCompatActivity {
             intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
             mStartLightboxForResult.launch( intent);
             }
-        } else {
-            logger.info("funcToExecute is null or does not equal 'selectBankWidget'");
         }
     }
 }
