@@ -103,7 +103,7 @@ public class PayWithMyBankActivity extends AppCompatActivity {
             mStartLightboxForResult.launch( intent);
             }
         } else {
-            LOG.e(LOG_TAG, "funcToExecute is null or does not equal 'selectBankWidget'");
+            logger.info("funcToExecute is null or does not equal 'selectBankWidget'");
         }
     }
 }

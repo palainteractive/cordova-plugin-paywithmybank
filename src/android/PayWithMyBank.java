@@ -50,7 +50,7 @@ public class PayWithMyBank extends CordovaPlugin {
                 if (callInProgress != null) {
                     callInProgress.success( new JSONObject( establishData));
                 } else {
-                    Log.e("PayWithMyBank", "callInProgress is null");
+                    logger.info("PayWithMyBank", "callInProgress is null");
                 }
             }
         });

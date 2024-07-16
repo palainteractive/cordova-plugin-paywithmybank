@@ -80,7 +80,7 @@ public class LightboxActivity extends AppCompatActivity {
                                 }
                             });
         } else {
-            logger.warning("establishData is null.");
+            logger.info("establishData is null.");
             finish();
         }
     }
