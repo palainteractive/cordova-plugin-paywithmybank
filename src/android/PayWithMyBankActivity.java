@@ -77,29 +77,33 @@ public class PayWithMyBankActivity extends AppCompatActivity {
         String funcToExecute = establishData.get("_funcToExecute");
         establishData.remove( "_funcToExecute");
 
-        if( funcToExecute.equals( "selectBankWidget")) {
-            trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
-                @Override
-                public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
-                    // logger.info( "PWMB: onBankSelected callback()");
+        if(funcToExecute != null) {
+            if( funcToExecute.equals( "selectBankWidget")) {
+                trustlyWidget.selectBankWidget( establishData).onBankSelected( new PayWithMyBankCallback<com.paywithmybank.android.sdk.interfaces.PayWithMyBank, Map<String, String>>() {
+                    @Override
+                    public void handle(com.paywithmybank.android.sdk.interfaces.PayWithMyBank o, Map<String, String> o2) {
+                        // logger.info( "PWMB: onBankSelected callback()");
 
-                    if( o2 instanceof HashMap) {
-                        HashMap data = (HashMap)o2;
-                        String paymentProviderId = (String)data.get( "paymentProviderId");
-                        // logger.info( "PWMB: paymentProviderId = "+paymentProviderId);
-                        establishData.put( "paymentProviderId", paymentProviderId);
+                        if( o2 instanceof HashMap) {
+                            HashMap data = (HashMap)o2;
+                            String paymentProviderId = (String)data.get( "paymentProviderId");
+                            // logger.info( "PWMB: paymentProviderId = "+paymentProviderId);
+                            establishData.put( "paymentProviderId", paymentProviderId);
+                        }
+
+                        Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
+                        intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
+                        mStartLightboxForResult.launch( intent);
+        //                startActivity( intent);
                     }
-
-                    Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
-                    intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
-                    mStartLightboxForResult.launch( intent);
-    //                startActivity( intent);
-                }
-            });
-        } else if( funcToExecute.equals( "establish")) {
-          Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
-          intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
-          mStartLightboxForResult.launch( intent);
+                });
+            } else if( funcToExecute.equals( "establish")) {
+            Intent intent = new Intent( PayWithMyBankActivity.this, LightboxActivity.class);
+            intent.putExtra(LightboxActivity.ESTABLISH_DATA, (Serializable) establishData);
+            mStartLightboxForResult.launch( intent);
+            }
+        } else {
+            LOG.e(LOG_TAG, "funcToExecute is null or does not equal 'selectBankWidget'");
         }
     }
 }
