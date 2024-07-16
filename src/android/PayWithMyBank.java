@@ -49,8 +49,6 @@ public class PayWithMyBank extends CordovaPlugin {
                 // logger.info( "PWMB: PayWithMyBank...SelectBank...onActivityResult(): ");
                 if (callInProgress != null) {
                     callInProgress.success( new JSONObject( establishData));
-                } else {
-                    logger.info("PayWithMyBank", "callInProgress is null");
                 }
             }
         });
