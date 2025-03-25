@@ -47,8 +47,9 @@ public class PayWithMyBank extends CordovaPlugin {
             @Override
             public void onActivityResult( ActivityResult result) {
                 // logger.info( "PWMB: PayWithMyBank...SelectBank...onActivityResult(): ");
-
-                callInProgress.success( new JSONObject( establishData));
+                if (callInProgress != null) {
+                    callInProgress.success( new JSONObject( establishData));
+                }
             }
         });
     }
@@ -122,7 +123,7 @@ public class PayWithMyBank extends CordovaPlugin {
 
     @Override
     public void onNewIntent( Intent intent) {
-        if( intent == null || !intent.getAction().equals( Intent.ACTION_VIEW)) {
+        if( intent == null || intent.getAction() == null || !intent.getAction().equals( Intent.ACTION_VIEW)) {
             return;
         }
         // logger.info( "PWMB: PayWithMyBank CordovaPlugin: onNewIntent()");
